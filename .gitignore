@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Working files not part of the site
+CPI_Historical_Analysis.xlsx
+Metanomics_Reddit_Conversations.docx
+book_image_designs.html
+*.tmp
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
