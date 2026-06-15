@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Blog Post  | Metanomics</title>
+  <meta name="description" content="INTRODUCTION: WHY ECONOMICS AND PROPHECY?
+
+Most people treat religious prophecy and economic theory as entirely separate domains. Metanomics argues that they ar">
+
+  <meta property="og:title" content="Test Blog Post ">
+  <meta property="og:description" content="INTRODUCTION: WHY ECONOMICS AND PROPHECY?
+
+Most people treat religious prophecy and economic theory as entirely separate domains. Metanomics argues that they are inseparable — that the scriptural visi">
+  <meta property="og:image" content="https://app.notion.com/images/page-cover/webb4.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Metanomics">
+
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <img class="nav-logo"
+        src="../assets/images/logo.png"
+        alt="Metanomics Logo" width="44" height="44">
+      <div class="nav-brand-text">
+        <span class="nav-title">Metanomics</span>
+        <span class="nav-subtitle">Reverse Engineering The Economy of Zion</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="../blog.html" class="active">Blog</a>
+    </div>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="../blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<div class="page-body">
+  <section class="post-hero">
+    <div class="container">
+      <a class="post-back" href="../blog.html">&larr; All Posts</a>
+      <h1>Test Blog Post </h1>
+      <div class="post-meta">
+        <span class="post-meta-date">June 14, 2026</span>
+        <span class="post-meta-author">by Trevor Spencer</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="post-cover-wrap"><img class="post-cover" src="https://app.notion.com/images/page-cover/webb4.jpg" alt="Test Blog Post " loading="lazy"></div>
+
+  <section class="post-content-section">
+    <div class="container">
+      <article class="post-content">
+        
+      </article>
+
+      <div style="margin-top:4rem; padding-top:2rem; border-top:1px solid var(--border); text-align:center;">
+        <a class="post-back" href="../blog.html">&larr; Back to All Posts</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand-col">
+        <img class="footer-logo"
+          src="../assets/images/logo.png"
+          alt="Metanomics" width="56" height="56" loading="lazy">
+        <p class="footer-site-name">Metanomics</p>
+        <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
+      </div>
+      <div class="footer-newsletter-col">
+        <h4>Metanomics Community Newsletter</h4>
+        <p>Stay connected with new insights, blog posts, and updates.</p>
+        <!-- PASTE BEEHIIV NEWSLETTER EMBED HERE -->
+        <div class="beehiiv-embed">
+          <form class="newsletter-form-inline" onsubmit="this.innerHTML='<p style=\'color:var(--slate);font-family:Anton,sans-serif;font-size:0.8rem;\'>&#10003; Subscribed!</p>';event.preventDefault();">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 by High Noon Product. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  function closeMenu() { mobileNav.classList.remove('open'); }
+</script>
+</body>
+</html>
