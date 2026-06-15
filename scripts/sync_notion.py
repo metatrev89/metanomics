@@ -20,13 +20,9 @@ import os
 import re
 import json
 import html
+import requests
 from pathlib import Path
 from datetime import datetime
-
-try:
-    from notion_client import Client
-except ImportError:
-    raise SystemExit("notion-client not installed. Run: pip install notion-client")
 
 # ── Config ─────────────────────────────────────────────────────────────────
 NOTION_API_KEY     = os.environ.get("NOTION_API_KEY", "")
@@ -39,7 +35,40 @@ SITE_ROOT  = Path(__file__).parent.parent
 POSTS_DIR  = SITE_ROOT / "posts"
 POSTS_DIR.mkdir(exist_ok=True)
 
-notion = Client(auth=NOTION_API_KEY)
+NOTION_HEADERS = {
+    "Authorization": f"Bearer {NOTION_API_KEY}",
+    "Notion-Version": "2022-06-28",
+    "Content-Type": "application/json",
+}
+
+def notion_query_database(database_id, filter_=None, sorts=None):
+    """Query a Notion database, returning all results (handles pagination)."""
+    url = f"https://api.notion.com/v1/databases/{database_id}/query"
+    body = {}
+    if filter_:
+        body["filter"] = filter_
+    if sorts:
+        body["sorts"] = sorts
+    results = []
+    while True:
+        resp = requests.post(url, headers=NOTION_HEADERS, json=body)
+        resp.raise_for_status()
+        data = resp.json()
+        results.extend(data.get("results", []))
+        if not data.get("has_more"):
+            break
+        body["start_cursor"] = data["next_cursor"]
+    return results
+
+def notion_get_block_children(block_id, start_cursor=None):
+    """Fetch one page of block children."""
+    url = f"https://api.notion.com/v1/blocks/{block_id}/children"
+    params = {}
+    if start_cursor:
+        params["start_cursor"] = start_cursor
+    resp = requests.get(url, headers=NOTION_HEADERS, params=params)
+    resp.raise_for_status()
+    return resp.json()
 
 # ── Helpers ─────────────────────────────────────────────────────────────────
 def plain_text(rich_text_arr: list) -> str:
@@ -319,12 +348,11 @@ def main():
     print(f"Fetching posts from Notion database {NOTION_DATABASE_ID}...")
 
     # Query only Published posts, newest first
-    response = notion.databases.query(
-        database_id=NOTION_DATABASE_ID,
-        filter={"property": "Status", "select": {"equals": "Published"}},
+    pages = notion_query_database(
+        NOTION_DATABASE_ID,
+        filter_={"property": "Status", "select": {"equals": "Published"}},
         sorts=[{"property": "Date", "direction": "descending"}],
     )
-    pages = response.get("results", [])
     print(f"Found {len(pages)} published post(s).")
 
     cards = []
@@ -361,10 +389,7 @@ def main():
         all_blocks = []
         cursor = None
         while True:
-            kwargs = {"block_id": page_id}
-            if cursor:
-                kwargs["start_cursor"] = cursor
-            result = notion.blocks.children.list(**kwargs)
+            result = notion_get_block_children(page_id, start_cursor=cursor)
             all_blocks.extend(result.get("results", []))
             if not result.get("has_more"):
                 break
