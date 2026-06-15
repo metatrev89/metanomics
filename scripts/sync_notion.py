@@ -293,12 +293,8 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
       <div class="footer-newsletter-col">
         <h4>Metanomics Community Newsletter</h4>
         <p>Stay connected with new insights, blog posts, and updates.</p>
-        <!-- PASTE BEEHIIV NEWSLETTER EMBED HERE -->
         <div class="beehiiv-embed">
-          <form class="newsletter-form-inline" onsubmit="this.innerHTML='<p style=\\'color:var(--slate);font-family:Anton,sans-serif;font-size:0.8rem;\\'>&#10003; Subscribed!</p>';event.preventDefault();">
-            <input type="email" placeholder="your@email.com" required>
-            <button type="submit">Subscribe</button>
-          </form>
+          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="91814e8d-ee95-410e-8db2-eb2ad6cb3f32"></script>
         </div>
       </div>
     </div>
