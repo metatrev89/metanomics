@@ -294,7 +294,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
         <h4>Metanomics Community Newsletter</h4>
         <p>Stay connected with new insights, blog posts, and updates.</p>
         <div class="beehiiv-embed">
-          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="c106395b-aa52-40e5-b0bc-f0a96ca3a139"></script>
+          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="18e7989f-0214-4d5e-ba2e-e63941252918"></script>
         </div>
       </div>
     </div>
