@@ -391,6 +391,8 @@ h1, h2, h3, h4 {
 
 /* Book card — Wix style: image + corner tab + colored footer strip */
 .book-card {
+  text-decoration: none;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   background: #fff;

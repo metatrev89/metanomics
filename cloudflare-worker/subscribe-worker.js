@@ -16,11 +16,10 @@ const ALLOWED_ORIGINS = [
 ];
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
     const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 
-    // Handle CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, {
         headers: {
@@ -46,7 +45,7 @@ export default {
     const payload = {
       email: body.email,
       reactivate_existing: true,
-      send_welcome_email: false,
+      send_welcome_email: true,
     };
     if (body.first_name) payload.first_name = body.first_name;
     if (body.last_name)  payload.last_name  = body.last_name;
@@ -65,22 +64,25 @@ export default {
 
     const beehiivText = await beehiivRes.text();
 
-    // Send notification email via Resend on successful subscription
+    // Send notification email via Resend — use ctx.waitUntil so the fetch
+    // isn't cancelled when the worker returns its response.
     if (beehiivRes.status >= 200 && beehiivRes.status < 300 && env.RESEND_API_KEY) {
       const name = [body.first_name, body.last_name].filter(Boolean).join(' ') || 'No name provided';
-      fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: 'Metanomics <onboarding@resend.dev>',
-          to: ['trevorspencer89@gmail.com'],
-          subject: `New Metanomics subscriber: ${body.email}`,
-          text: `New subscriber!\n\nName: ${name}\nEmail: ${body.email}\n\nThey signed up via the Metanomics website.`,
-        }),
-      }).catch(() => {}); // fire-and-forget; don't block the response
+      ctx.waitUntil(
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: 'Metanomics <onboarding@resend.dev>',
+            to: ['trevorspencer89@gmail.com'],
+            subject: `New Metanomics subscriber: ${body.email}`,
+            text: `New subscriber!\n\nName: ${name}\nEmail: ${body.email}\n\nThey signed up via the Metanomics website.`,
+          }),
+        })
+      );
     }
 
     return new Response(beehiivText, {
