@@ -194,10 +194,13 @@
                In Beehiiv: Settings → Forms → Create Form → Embed
                Set your welcome email to include the PDF download link.
                ============================================================ -->
-          <div class="beehiiv-embed" id="ebook-form">
-            <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="5740a13b-9059-48c4-9290-8f714b4fef5b"></script>
-          </div>
-          <!-- END BEEHIIV EMBED -->
+          <form class="custom-subscribe-form" id="ebook-subscribe-form">
+            <div class="subscribe-input-row">
+              <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+              <button type="submit">Get the PDF</button>
+            </div>
+            <div class="subscribe-msg" id="ebook-msg" aria-live="polite"></div>
+          </form>
         </div>
       </div>
     </div>
@@ -283,10 +286,13 @@
              You can use a different form than the PDF download form above,
              or the same one — both add subscribers to the same publication.
              ============================================================ -->
-        <div class="beehiiv-embed" id="newsletter-form">
-          <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="18e7989f-0214-4d5e-ba2e-e63941252918"></script>
-        </div>
-        <!-- END BEEHIIV EMBED -->
+        <form class="custom-subscribe-form" id="footer-subscribe-form">
+          <div class="subscribe-input-row">
+            <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+            <button type="submit">Subscribe</button>
+          </div>
+          <div class="subscribe-msg" id="footer-msg" aria-live="polite"></div>
+        </form>
 
         <p style="font-size:0.72rem; color:var(--text-dim); margin-top:0.75rem;">
           No spam. Unsubscribe anytime.
@@ -350,18 +356,52 @@
     el.onclick = null;
   }
 
-  /* ---- Placeholder form handlers (remove when Beehiiv is connected) ---- */
-  function handleEbookSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    form.innerHTML = '<p style="color:var(--dark-navy);font-family:Anton,sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-align:center;padding:1.5rem 0;">✓ Thank you! Check your email for the download link.</p>';
+  /* ---- Beehiiv Subscribe API ---- */
+  // ⚠️ Paste your Beehiiv API key below (Beehiiv → Settings → API → Create API Key):
+  const BEEHIIV_API_KEY = 'YOUR_API_KEY_HERE';
+  const BEEHIIV_PUB_ID  = 'pub_59c2ca48-ee87-4ee2-a4eb-cf9c022751ec';
+
+  async function subscribeToBeehiiv(email, msgId, btn) {
+    const msgEl = document.getElementById(msgId);
+    const origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Subscribing…';
+    msgEl.textContent = '';
+    msgEl.className = 'subscribe-msg';
+    try {
+      const res = await fetch(
+        `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${BEEHIIV_API_KEY}`
+          },
+          body: JSON.stringify({ email, reactivate_existing: true, send_welcome_email: false })
+        }
+      );
+      if (res.ok) {
+        msgEl.textContent = '✓ You\'re subscribed! Check your inbox.';
+        msgEl.classList.add('subscribe-success');
+        btn.form.reset();
+      } else { throw new Error('failed'); }
+    } catch {
+      msgEl.textContent = 'Something went wrong. Please try again.';
+      msgEl.classList.add('subscribe-error');
+      btn.disabled = false;
+      btn.textContent = origText;
+    }
   }
 
-  function handleNewsletterSubmit(e) {
+  document.getElementById('ebook-subscribe-form').addEventListener('submit', e => {
     e.preventDefault();
-    const form = e.target;
-    form.innerHTML = '<p style="color:var(--slate);font-family:Anton,sans-serif;font-size:0.8rem;letter-spacing:0.1em;">✓ You\'re subscribed!</p>';
-  }
+    subscribeToBeehiiv(e.target.email.value, 'ebook-msg', e.target.querySelector('button[type="submit"]'));
+  });
+
+  document.getElementById('footer-subscribe-form').addEventListener('submit', e => {
+    e.preventDefault();
+    subscribeToBeehiiv(e.target.email.value, 'footer-msg', e.target.querySelector('button[type="submit"]'));
+  });
 </script>
 
 </body>
