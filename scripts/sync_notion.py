@@ -316,7 +316,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
   function closeMenu() {{ mobileNav.classList.remove('open'); }}
 
   /* ---- Beehiiv Subscribe API ---- */
-  const BEEHIIV_API_KEY = 'YOUR_API_KEY_HERE';
+  const BEEHIIV_API_KEY = 'YqINO9LAbHCvpY3obkNV688QFu2H15SEsBxORl73YpUHvF1o7GQ79ZZm8uea1Qql';
   const BEEHIIV_PUB_ID  = 'pub_59c2ca48-ee87-4ee2-a4eb-cf9c022751ec';
   async function subscribeToBeehiiv(email, msgId, btn) {{
     const msgEl = document.getElementById(msgId);
