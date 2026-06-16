@@ -293,13 +293,11 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
       <div class="footer-newsletter-col">
         <h4>Metanomics Community Newsletter</h4>
         <p>Stay connected with new insights, blog posts, and updates.</p>
-        <form class="custom-subscribe-form" id="footer-subscribe-form">
-          <div class="subscribe-input-row">
-            <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit">Subscribe</button>
-          </div>
-          <div class="subscribe-msg" id="footer-msg" aria-live="polite"></div>
+        <form class="newsletter-form-inline" id="footer-subscribe-form">
+          <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+          <button type="submit">Subscribe</button>
         </form>
+        <div class="subscribe-msg" id="footer-msg" aria-live="polite"></div>
       </div>
     </div>
     <div class="footer-bottom">

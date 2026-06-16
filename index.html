@@ -194,12 +194,24 @@
                In Beehiiv: Settings → Forms → Create Form → Embed
                Set your welcome email to include the PDF download link.
                ============================================================ -->
-          <form class="custom-subscribe-form" id="ebook-subscribe-form">
-            <div class="subscribe-input-row">
-              <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-              <button type="submit">Get the PDF</button>
+          <form id="ebook-subscribe-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="ebook-fname">First Name *</label>
+                <input type="text" id="ebook-fname" name="firstName" placeholder="Trevor" required>
+              </div>
+              <div class="form-field">
+                <label for="ebook-lname">Last Name *</label>
+                <input type="text" id="ebook-lname" name="lastName" placeholder="Spencer" required>
+              </div>
             </div>
+            <div class="form-field">
+              <label for="ebook-email">Email Address *</label>
+              <input type="email" id="ebook-email" name="email" placeholder="you@example.com" required>
+            </div>
+            <button type="submit" class="btn-submit" id="ebook-btn">Download Free E-Book</button>
             <div class="subscribe-msg" id="ebook-msg" aria-live="polite"></div>
+            <p class="form-note">You'll be subscribed to the Metanomics newsletter. Unsubscribe anytime.</p>
           </form>
         </div>
       </div>
@@ -286,13 +298,11 @@
              You can use a different form than the PDF download form above,
              or the same one — both add subscribers to the same publication.
              ============================================================ -->
-        <form class="custom-subscribe-form" id="footer-subscribe-form">
-          <div class="subscribe-input-row">
-            <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit">Subscribe</button>
-          </div>
-          <div class="subscribe-msg" id="footer-msg" aria-live="polite"></div>
+        <form class="newsletter-form-inline" id="footer-subscribe-form">
+          <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+          <button type="submit">Subscribe</button>
         </form>
+        <div class="subscribe-msg" id="footer-msg" aria-live="polite"></div>
 
         <p style="font-size:0.72rem; color:var(--text-dim); margin-top:0.75rem;">
           No spam. Unsubscribe anytime.
@@ -361,7 +371,7 @@
   const BEEHIIV_API_KEY = 'YOUR_API_KEY_HERE';
   const BEEHIIV_PUB_ID  = 'pub_59c2ca48-ee87-4ee2-a4eb-cf9c022751ec';
 
-  async function subscribeToBeehiiv(email, msgId, btn) {
+  async function subscribeToBeehiiv(payload, msgId, btn) {
     const msgEl = document.getElementById(msgId);
     const origText = btn.textContent;
     btn.disabled = true;
@@ -377,7 +387,7 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${BEEHIIV_API_KEY}`
           },
-          body: JSON.stringify({ email, reactivate_existing: true, send_welcome_email: false })
+          body: JSON.stringify({ reactivate_existing: true, send_welcome_email: false, ...payload })
         }
       );
       if (res.ok) {
@@ -395,12 +405,20 @@
 
   document.getElementById('ebook-subscribe-form').addEventListener('submit', e => {
     e.preventDefault();
-    subscribeToBeehiiv(e.target.email.value, 'ebook-msg', e.target.querySelector('button[type="submit"]'));
+    subscribeToBeehiiv(
+      { email: e.target.email.value, first_name: e.target.firstName.value, last_name: e.target.lastName.value },
+      'ebook-msg',
+      document.getElementById('ebook-btn')
+    );
   });
 
   document.getElementById('footer-subscribe-form').addEventListener('submit', e => {
     e.preventDefault();
-    subscribeToBeehiiv(e.target.email.value, 'footer-msg', e.target.querySelector('button[type="submit"]'));
+    subscribeToBeehiiv(
+      { email: e.target.email.value },
+      'footer-msg',
+      e.target.querySelector('button[type="submit"]')
+    );
   });
 </script>
 
