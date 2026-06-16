@@ -569,7 +569,7 @@ h1, h2, h3, h4 {
   border-radius: var(--radius);
   color: var(--dark-navy);
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem; /* 16px min prevents iOS auto-zoom */
   transition: border-color 0.2s, background 0.2s;
   -webkit-appearance: none;
 }
@@ -773,7 +773,7 @@ h1, h2, h3, h4 {
   border-radius: var(--radius) 0 0 var(--radius);
   color: #ffffff;
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-size: 1rem; /* 16px min prevents iOS auto-zoom */
   -webkit-appearance: none;
 }
 
