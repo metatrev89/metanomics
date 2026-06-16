@@ -1,10 +1,12 @@
 /**
  * Metanomics Subscribe Worker
  * Proxies form submissions to the Beehiiv API to avoid CORS restrictions.
+ * On successful subscription, sends a notification email via Resend.
  *
  * Environment variables (set in Cloudflare dashboard as secrets):
  *   BEEHIIV_API_KEY  — your Beehiiv API key
  *   BEEHIIV_PUB_ID   — pub_59c2ca48-ee87-4ee2-a4eb-cf9c022751ec
+ *   RESEND_API_KEY   — your Resend API key for notification emails
  */
 
 const ALLOWED_ORIGINS = [
@@ -61,7 +63,27 @@ export default {
       }
     );
 
-    return new Response(await beehiivRes.text(), {
+    const beehiivText = await beehiivRes.text();
+
+    // Send notification email via Resend on successful subscription
+    if (beehiivRes.status >= 200 && beehiivRes.status < 300 && env.RESEND_API_KEY) {
+      const name = [body.first_name, body.last_name].filter(Boolean).join(' ') || 'No name provided';
+      fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: 'Metanomics <onboarding@resend.dev>',
+          to: ['trevorspencer89@gmail.com'],
+          subject: `New Metanomics subscriber: ${body.email}`,
+          text: `New subscriber!\n\nName: ${name}\nEmail: ${body.email}\n\nThey signed up via the Metanomics website.`,
+        }),
+      }).catch(() => {}); // fire-and-forget; don't block the response
+    }
+
+    return new Response(beehiivText, {
       status: beehiivRes.status,
       headers: {
         'Content-Type': 'application/json',
