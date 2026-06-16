@@ -16,6 +16,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- ============================================================
+       STRUCTURED DATA (JSON-LD) — SEO Schema Markup
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://www.metanomics.org/blog.html#blog",
+        "url": "https://www.metanomics.org/blog.html",
+        "name": "Metanomics Blog",
+        "description": "Insights, summaries, and reflections on the Economy of Zion by Trevor Jared Spencer.",
+        "author": { "@id": "https://www.metanomics.org/#person" },
+        "publisher": { "@id": "https://www.metanomics.org/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.metanomics.org/#person",
+        "name": "Trevor Jared Spencer",
+        "url": "https://www.metanomics.org",
+        "sameAs": [
+          "https://www.linkedin.com/in/trevor-spencer/",
+          "https://www.linkedin.com/company/metanomics-reverse-engineering-the-economy-of-zion/",
+          "https://www.amazon.com/stores/author/B0DG35BD97",
+          "https://www.youtube.com/@metatrev89",
+          "https://www.instagram.com/metatrev89",
+          "https://x.com/metatrev89",
+          "https://www.threads.com/@metatrev89"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 

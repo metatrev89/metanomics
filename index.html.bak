@@ -30,113 +30,6 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- ============================================================
-       STRUCTURED DATA (JSON-LD) — SEO Schema Markup
-       ============================================================ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://www.metanomics.org/#website",
-        "url": "https://www.metanomics.org",
-        "name": "Metanomics",
-        "description": "Reverse Engineering The Economy of Zion — Prophecy meets economics.",
-        "publisher": { "@id": "https://www.metanomics.org/#person" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://www.metanomics.org/#person",
-        "name": "Trevor Jared Spencer",
-        "url": "https://www.metanomics.org",
-        "sameAs": [
-          "https://www.linkedin.com/in/trevor-spencer/",
-          "https://www.linkedin.com/company/metanomics-reverse-engineering-the-economy-of-zion/",
-          "https://www.amazon.com/stores/author/B0DG35BD97",
-          "https://www.youtube.com/@metatrev89",
-          "https://www.instagram.com/metatrev89",
-          "https://x.com/metatrev89",
-          "https://www.threads.com/@metatrev89"
-        ],
-        "jobTitle": "Author",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Element Publishing"
-        }
-      },
-      {
-        "@type": "Book",
-        "@id": "https://www.metanomics.org/#book-paperback",
-        "name": "Metanomics: Reverse Engineering the Economy of Zion",
-        "author": { "@id": "https://www.metanomics.org/#person" },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Element Publishing"
-        },
-        "datePublished": "2024-07-04",
-        "isbn": "979-8329676310",
-        "bookFormat": "https://schema.org/Paperback",
-        "image": "https://www.metanomics.org/assets/images/book-paperback.png",
-        "url": "https://a.co/d/0cPq1r7Z",
-        "description": "Metanomics decodes the Return of Jesus timeline and reveals why All things in common powers The New Jerusalem. Prophecy meets economics.",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "url": "https://a.co/d/0cPq1r7Z",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Amazon" }
-        }
-      },
-      {
-        "@type": "Book",
-        "@id": "https://www.metanomics.org/#book-hardcover",
-        "name": "Metanomics: Reverse Engineering the Economy of Zion",
-        "author": { "@id": "https://www.metanomics.org/#person" },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Element Publishing"
-        },
-        "datePublished": "2024-07-04",
-        "isbn": "979-8251006605",
-        "bookFormat": "https://schema.org/Hardcover",
-        "image": "https://www.metanomics.org/assets/images/book-hardcover.png",
-        "url": "https://a.co/d/02evYZrs",
-        "description": "Metanomics decodes the Return of Jesus timeline and reveals why All things in common powers The New Jerusalem. Prophecy meets economics.",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "url": "https://a.co/d/02evYZrs",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Amazon" }
-        }
-      },
-      {
-        "@type": "Book",
-        "@id": "https://www.metanomics.org/#book-kindle",
-        "name": "Metanomics: Reverse Engineering the Economy of Zion",
-        "author": { "@id": "https://www.metanomics.org/#person" },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Element Publishing"
-        },
-        "datePublished": "2024-07-04",
-        "bookFormat": "https://schema.org/EBook",
-        "image": "https://www.metanomics.org/assets/images/book-kindle.png",
-        "url": "https://a.co/d/0gyuuCcZ",
-        "description": "Metanomics decodes the Return of Jesus timeline and reveals why All things in common powers The New Jerusalem. Prophecy meets economics.",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "url": "https://a.co/d/0gyuuCcZ",
-          "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Amazon" }
-        }
-      }
-    ]
-  }
-  </script>
 </head>
 <body>
 
@@ -145,7 +38,7 @@
      ============================================================ -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
+    <a href="/" class="nav-brand">
       <img
         class="nav-logo"
         src="assets/images/logo.png"
@@ -160,7 +53,7 @@
 
     <!-- Desktop links -->
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
+      <a href="/" class="active">Home</a>
       <a href="blog.html">Blog</a>
     </div>
 
@@ -177,7 +70,7 @@
 
 <!-- Mobile nav overlay -->
 <div class="nav-mobile" id="mobileNav" role="navigation">
-  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="/" onclick="closeMenu()">Home</a>
   <a href="blog.html" onclick="closeMenu()">Blog</a>
 </div>
 
@@ -235,40 +128,40 @@
       <div class="books-grid">
 
         <!-- Paperback -->
-        <a class="book-card book-card--paperback" href="https://a.co/d/0cPq1r7Z" target="_blank" rel="noopener noreferrer">
+        <div class="book-card book-card--paperback">
           <div class="book-card-img-wrap">
             <img src="assets/images/book-paperback.png" alt="Metanomics Paperback" loading="lazy">
             <span class="book-card-tab">Paperback</span>
           </div>
           <div class="book-card-footer">
             <p class="book-card-format">Paperback</p>
-            <span class="book-card-buy">Buy on Amazon &rarr;</span>
+            <a class="book-card-buy" href="https://a.co/d/0cPq1r7Z" target="_blank" rel="noopener noreferrer">Buy on Amazon &rarr;</a>
           </div>
-        </a>
+        </div>
 
         <!-- Kindle -->
-        <a class="book-card book-card--kindle" href="https://a.co/d/0gyuuCcZ" target="_blank" rel="noopener noreferrer">
+        <div class="book-card book-card--kindle">
           <div class="book-card-img-wrap">
             <img src="assets/images/book-kindle.png" alt="Metanomics Kindle Edition" loading="lazy">
             <span class="book-card-tab">Kindle</span>
           </div>
           <div class="book-card-footer">
             <p class="book-card-format">Kindle</p>
-            <span class="book-card-buy">Buy on Amazon &rarr;</span>
+            <a class="book-card-buy" href="https://a.co/d/0gyuuCcZ" target="_blank" rel="noopener noreferrer">Buy on Amazon &rarr;</a>
           </div>
-        </a>
+        </div>
 
         <!-- Hardcover -->
-        <a class="book-card book-card--hardcover" href="https://a.co/d/02evYZrs" target="_blank" rel="noopener noreferrer">
+        <div class="book-card book-card--hardcover">
           <div class="book-card-img-wrap">
             <img src="assets/images/book-hardcover.png" alt="Metanomics Hardcover" loading="lazy">
             <span class="book-card-tab">Hardcover</span>
           </div>
           <div class="book-card-footer">
             <p class="book-card-format">Hardcover</p>
-            <span class="book-card-buy">Buy on Amazon &rarr;</span>
+            <a class="book-card-buy" href="https://a.co/d/02evYZrs" target="_blank" rel="noopener noreferrer">Buy on Amazon &rarr;</a>
           </div>
-        </a>
+        </div>
 
       </div>
     </div>
@@ -293,7 +186,7 @@
         <!-- Beehiiv embed form -->
         <div class="ebook-form-wrap">
           <h3>Get the Free PDF</h3>
-          <p>Enter your details below to receive a free digital copy and join the Remembrance Newsletter.</p>
+          <p>Enter your details below to receive a free digital copy and join the Metanomics community newsletter.</p>
 
           <!-- ============================================================
                BEEHIIV EMBED — PDF DOWNLOAD FORM
@@ -395,7 +288,7 @@
 
       <!-- Newsletter col -->
       <div class="footer-newsletter-col">
-        <h4>Remembrance Newsletter</h4>
+        <h4>Metanomics Community Newsletter</h4>
         <p>Stay connected with new insights, blog posts, and updates on the Economy of Zion.</p>
 
         <!-- ============================================================
@@ -433,15 +326,6 @@
      JAVASCRIPT
      ============================================================ -->
 <script>
-  /* ---- Nav Brand: smooth scroll to top on homepage ---- */
-  document.querySelector('.nav-brand').addEventListener('click', function(e) {
-    const path = window.location.pathname;
-    if (path.endsWith('index.html') || path === '/' || path.endsWith('/metanomics/') || path.endsWith('/metanomics')) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-
   /* ---- Mobile Nav ---- */
   const menuBtn   = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
