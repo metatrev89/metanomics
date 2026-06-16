@@ -142,9 +142,8 @@
     mobileNav.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', 'false');
   }
-  /* ---- Beehiiv Subscribe API ---- */
-  const BEEHIIV_API_KEY = 'YqINO9LAbHCvpY3obkNV688QFu2H15SEsBxORl73YpUHvF1o7GQ79ZZm8uea1Qql';
-  const BEEHIIV_PUB_ID  = 'pub_59c2ca48-ee87-4ee2-a4eb-cf9c022751ec';
+  /* ---- Beehiiv Subscribe (via Cloudflare Worker proxy) ---- */
+  const SUBSCRIBE_URL = 'YOUR_WORKER_URL_HERE';
 
   async function subscribeToBeehiiv(email, msgId, btn) {
     const msgEl = document.getElementById(msgId);
@@ -154,17 +153,11 @@
     msgEl.textContent = '';
     msgEl.className = 'subscribe-msg';
     try {
-      const res = await fetch(
-        `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
-        {
+      const res = await fetch(SUBSCRIBE_URL, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${BEEHIIV_API_KEY}`
-          },
-          body: JSON.stringify({ email, reactivate_existing: true, send_welcome_email: false })
-        }
-      );
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
       if (res.ok) {
         msgEl.textContent = '✓ You\'re subscribed! Check your inbox.';
         msgEl.classList.add('subscribe-success');
