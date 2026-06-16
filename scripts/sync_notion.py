@@ -316,7 +316,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
   function closeMenu() {{ mobileNav.classList.remove('open'); }}
 
   /* ---- Beehiiv Subscribe (via Cloudflare Worker proxy) ---- */
-  const SUBSCRIBE_URL = 'YOUR_WORKER_URL_HERE';
+  const SUBSCRIBE_URL = 'https://metanomics-subscribe.trevorspencer89.workers.dev';
   async function subscribeToBeehiiv(email, msgId, btn) {{
     const msgEl = document.getElementById(msgId);
     const origText = btn.textContent;
