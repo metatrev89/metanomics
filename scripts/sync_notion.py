@@ -309,19 +309,19 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
 <script>
 
   /* ---- Mobile Nav Active State ---- */
-  (function() {
+  (function() {{
     const path = window.location.pathname;
-    document.querySelectorAll('.nav-mobile a').forEach(function(link) {
+    document.querySelectorAll('.nav-mobile a').forEach(function(link) {{
       const href = link.getAttribute('href');
       if (
         (href.includes('index.html') && (path === '/' || path.endsWith('/') || path.endsWith('index.html'))) ||
         (href.includes('blog.html') && path.endsWith('blog.html')) ||
         (href === '../index.html' && (path === '/' || path.endsWith('/') || path.endsWith('index.html')))
-      ) {
+      ) {{
         link.classList.add('active');
-      }
-    });
-  })();
+      }}
+    }});
+  }})();
 
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
