@@ -257,6 +257,14 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
     }}
   }}
   </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-72229G51TF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-72229G51TF');
+  </script>
 </head>
 <body>
 
