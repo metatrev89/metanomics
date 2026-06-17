@@ -223,6 +223,7 @@ h1, h2, h3, h4 {
 }
 
 .nav-mobile a:hover { color: var(--amber); }
+.nav-mobile a.active { color: var(--amber); }
 
 /* Page offset for fixed nav */
 .page-body { padding-top: var(--nav-height); }
@@ -866,6 +867,9 @@ h1, h2, h3, h4 {
 }
 
 .post-card {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);

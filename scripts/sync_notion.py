@@ -351,17 +351,15 @@ def blog_card_html(title, date_str, excerpt, slug, cover_url):
         </svg>
       </div>"""
     )
-    return f"""        <article class="post-card">
+    return f"""        <a class="post-card" href="posts/{html.escape(slug)}.html">
           {cover_block}
           <div class="post-card-body">
             <p class="post-card-date">{html.escape(date_str)}</p>
-            <h2 class="post-card-title">
-              <a href="posts/{html.escape(slug)}.html">{html.escape(title)}</a>
-            </h2>
+            <h2 class="post-card-title">{html.escape(title)}</h2>
             <p class="post-card-excerpt">{html.escape(excerpt)}</p>
-            <a class="post-card-link" href="posts/{html.escape(slug)}.html">Read More &rarr;</a>
+            <span class="post-card-link">Read More &rarr;</span>
           </div>
-        </article>"""
+        </a>"""
 
 # ── Main sync ────────────────────────────────────────────────────────────────
 def main():

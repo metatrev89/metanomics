@@ -81,7 +81,7 @@
 </nav>
 <div class="nav-mobile" id="mobileNav">
   <a href="index.html" onclick="closeMenu()">Home</a>
-  <a href="blog.html" onclick="closeMenu()">Blog</a>
+  <a href="blog.html" class="active" onclick="closeMenu()">Blog</a>
 </div>
 
 <div class="page-body">
@@ -111,17 +111,15 @@
       <!-- POSTS-START -->
       <div class="posts-grid">
 
-        <article class="post-card">
+        <a class="post-card" href="posts/test-post.html">
           <img class="post-card-cover" src="https://app.notion.com/images/page-cover/webb4.jpg" alt="Test Blog Post " loading="lazy">
           <div class="post-card-body">
             <p class="post-card-date">June 14, 2026</p>
-            <h2 class="post-card-title">
-              <a href="posts/test-post.html">Test Blog Post </a>
-            </h2>
+            <h2 class="post-card-title">Test Blog Post </h2>
             <p class="post-card-excerpt">1-2 sentences test for the test blog post. </p>
-            <a class="post-card-link" href="posts/test-post.html">Read More &rarr;</a>
+            <span class="post-card-link">Read More &rarr;</span>
           </div>
-        </article>
+        </a>
 
       </div>
       <!-- POSTS-END -->
