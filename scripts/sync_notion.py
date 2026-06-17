@@ -217,10 +217,46 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Metanomics">
 
-  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+  <link rel="icon" type="image/png" href="../assets/images/metanomics-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.metanomics.org/posts/{slug}.html">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@metatrev89">
+  <meta name="twitter:creator" content="@metatrev89">
+  <meta property="og:see_also" content="https://www.youtube.com/@metatrev89">
+  <meta property="og:see_also" content="https://www.instagram.com/metatrev89">
+
+  <!-- BlogPosting Schema -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{html.escape(title)}",
+    "description": "{html.escape(excerpt[:200]) if excerpt else html.escape(title)}",
+    "image": "{html.escape(cover_url) if cover_url else 'https://static.wixstatic.com/media/2d97c8_ac118d96d2d9410893ea007048192f3d~mv2.png'}",
+    "datePublished": "{date_raw}",
+    "author": {{
+      "@type": "Person",
+      "name": "Trevor Jared Spencer",
+      "url": "https://www.metanomics.org"
+    }},
+    "publisher": {{
+      "@type": "Organization",
+      "name": "Metanomics",
+      "url": "https://www.metanomics.org"
+    }},
+    "mainEntityOfPage": {{
+      "@type": "WebPage",
+      "@id": "https://www.metanomics.org/posts/{slug}.html"
+    }}
+  }}
+  </script>
 </head>
 <body>
 
@@ -228,7 +264,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
   <div class="nav-inner">
     <a href="../index.html" class="nav-brand">
       <img class="nav-logo"
-        src="../assets/images/logo.png"
+        src="../assets/images/metanomics-logo.png"
         alt="Metanomics Logo" width="44" height="44">
       <div class="nav-brand-text">
         <span class="nav-title">Metanomics</span>
@@ -274,7 +310,10 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
       </article>
 
       <div style="margin-top:4rem; padding-top:2rem; border-top:1px solid var(--border); text-align:center;">
-        <a class="post-back" href="../blog.html">&larr; Back to All Posts</a>
+        <p style="font-family:'Inter',sans-serif; color:var(--text-dim); margin-bottom:1rem;">Enjoyed this article? Get the full book on Amazon.</p>
+        <a href="https://a.co/d/0cPq1r7Z" target="_blank" rel="noopener noreferrer" style="display:inline-block; background:var(--amber); color:var(--dark-navy); font-family:'Anton',sans-serif; letter-spacing:0.08em; padding:0.75rem 2rem; border-radius:4px; text-decoration:none; margin-bottom:2rem;">Buy Metanomics on Amazon &rarr;</a>
+        <br>
+        <a class="post-back post-back--dark" href="../blog.html">&larr; Back to All Posts</a>
       </div>
     </div>
   </section>
@@ -285,7 +324,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
     <div class="footer-inner">
       <div class="footer-brand-col">
         <img class="footer-logo"
-          src="../assets/images/logo.png"
+          src="../assets/images/metanomics-logo.png"
           alt="Metanomics" width="56" height="56" loading="lazy">
         <p class="footer-site-name">Metanomics</p>
         <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
@@ -302,6 +341,10 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">&copy; 2026 by High Noon Product. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="https://www.youtube.com/@metatrev89" target="_blank" rel="noopener">YouTube</a>
+      </div>
     </div>
   </div>
 </footer>
