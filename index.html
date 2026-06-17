@@ -442,6 +442,22 @@
     }
   });
 
+
+  /* ---- Mobile Nav Active State ---- */
+  (function() {
+    const path = window.location.pathname;
+    document.querySelectorAll('.nav-mobile a').forEach(function(link) {
+      const href = link.getAttribute('href');
+      if (
+        (href.includes('index.html') && (path === '/' || path.endsWith('/') || path.endsWith('index.html'))) ||
+        (href.includes('blog.html') && path.endsWith('blog.html')) ||
+        (href === '../index.html' && (path === '/' || path.endsWith('/') || path.endsWith('index.html')))
+      ) {
+        link.classList.add('active');
+      }
+    });
+  })();
+
   /* ---- Mobile Nav ---- */
   const menuBtn   = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
