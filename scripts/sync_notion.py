@@ -226,7 +226,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
 
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="/" class="nav-brand">
+    <a href="../index.html" class="nav-brand">
       <img class="nav-logo"
         src="../assets/images/logo.png"
         alt="Metanomics Logo" width="44" height="44">
@@ -236,7 +236,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
       </div>
     </a>
     <div class="nav-links">
-      <a href="/">Home</a>
+      <a href="../index.html">Home</a>
       <a href="../blog.html" class="active">Blog</a>
     </div>
     <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -249,7 +249,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
   </div>
 </nav>
 <div class="nav-mobile" id="mobileNav">
-  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="../index.html" onclick="closeMenu()">Home</a>
   <a href="../blog.html" onclick="closeMenu()">Blog</a>
 </div>
 
@@ -291,7 +291,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
         <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
       </div>
       <div class="footer-newsletter-col">
-        <h4>Metanomics Community Newsletter</h4>
+        <h4>Remembrance Newsletter</h4>
         <p>Stay connected with new insights, blog posts, and updates.</p>
         <form class="newsletter-form-inline" id="footer-subscribe-form">
           <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
