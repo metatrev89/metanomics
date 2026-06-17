@@ -213,7 +213,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
 
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(excerpt[:200]) if excerpt else ''}">
-  <meta property="og:image" content="{html.escape(cover_url) if cover_url else 'https://static.wixstatic.com/media/2d97c8_ac118d96d2d9410893ea007048192f3d~mv2.png'}">
+  <meta property="og:image" content="{html.escape(cover_url) if cover_url else 'https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png'}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Metanomics">
 
@@ -239,7 +239,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
     "@type": "BlogPosting",
     "headline": "{html.escape(title)}",
     "description": "{html.escape(excerpt[:200]) if excerpt else html.escape(title)}",
-    "image": "{html.escape(cover_url) if cover_url else 'https://static.wixstatic.com/media/2d97c8_ac118d96d2d9410893ea007048192f3d~mv2.png'}",
+    "image": "{html.escape(cover_url) if cover_url else 'https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png'}",
     "datePublished": "{date_raw}",
     "author": {{
       "@type": "Person",
