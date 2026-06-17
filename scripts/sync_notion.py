@@ -31,9 +31,11 @@ NOTION_DATABASE_ID = os.environ.get("NOTION_DATABASE_ID", "")
 if not NOTION_API_KEY or not NOTION_DATABASE_ID:
     raise SystemExit("ERROR: NOTION_API_KEY and NOTION_DATABASE_ID must be set.")
 
-SITE_ROOT  = Path(__file__).parent.parent
-POSTS_DIR  = SITE_ROOT / "posts"
+SITE_ROOT    = Path(__file__).parent.parent
+POSTS_DIR    = SITE_ROOT / "posts"
+COVERS_DIR   = SITE_ROOT / "assets" / "images" / "posts"
 POSTS_DIR.mkdir(exist_ok=True)
+COVERS_DIR.mkdir(parents=True, exist_ok=True)
 
 NOTION_HEADERS = {
     "Authorization": f"Bearer {NOTION_API_KEY}",
@@ -88,6 +90,26 @@ def rich_text_to_html(rich_text_arr: list) -> str:
         if href:                   content = f'<a href="{html.escape(href)}">{content}</a>'
         out += content
     return out
+
+def download_cover(url: str, slug: str) -> str:
+    """Download a cover image and save it locally. Returns the local web path."""
+    if not url:
+        return ""
+    # Detect extension from URL (before any query string)
+    ext = Path(url.split("?")[0]).suffix.lower() or ".jpg"
+    if ext not in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
+        ext = ".jpg"
+    filename = f"{slug}-cover{ext}"
+    local_path = COVERS_DIR / filename
+    web_path = f"/assets/images/posts/{filename}"
+    try:
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+        local_path.write_bytes(resp.content)
+        return web_path
+    except Exception as e:
+        print(f"    ⚠ Could not download cover image: {e}")
+        return url  # fall back to original URL
 
 def slugify(text: str) -> str:
     text = text.lower().strip()
@@ -467,6 +489,10 @@ def main():
         if not title:
             print(f"  Skipping page {page_id} — no title.")
             continue
+
+        # Download cover image locally so it doesn't expire
+        if cover_url:
+            cover_url = download_cover(cover_url, slug)
 
         print(f"  Processing: '{title}' ({slug})")
 
