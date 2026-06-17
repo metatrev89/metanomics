@@ -671,7 +671,15 @@ h1, h2, h3, h4 {
   transition: background 0.2s;
 }
 
-.social-link:hover .social-icon { background: var(--slate); }
+/* Book card color match: YouTube=white, Instagram=blue, X=amber */
+.social-links .social-link:nth-child(1) .social-icon { background: #ffffff; }
+.social-links .social-link:nth-child(1) .social-icon svg { fill: var(--dark-navy); }
+.social-links .social-link:nth-child(2) .social-icon { background: var(--blue-nav); }
+.social-links .social-link:nth-child(3) .social-icon { background: var(--amber); }
+.social-links .social-link:nth-child(3) .social-icon svg { fill: var(--dark-navy); }
+
+.social-link:hover .social-icon { background: var(--slate) !important; }
+.social-link:hover .social-icon svg { fill: var(--text-white) !important; }
 
 .social-icon svg {
   width: 24px;
