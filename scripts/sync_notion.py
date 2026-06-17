@@ -198,7 +198,7 @@ def blocks_to_html(blocks: list) -> str:
     return "\n".join(out)
 
 # ── Post HTML template ───────────────────────────────────────────────────────
-def post_html(title, date_str, author, content_html, cover_url, slug, excerpt):
+def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, date_raw=""):
     cover_tag = (
         f'<div class="post-cover-wrap"><img class="post-cover" src="{html.escape(cover_url)}" alt="{html.escape(title)}" loading="lazy"></div>'
         if cover_url else ""
@@ -477,7 +477,7 @@ def main():
         # Write individual post file
         post_file = POSTS_DIR / f"{slug}.html"
         post_file.write_text(
-            post_html(title, date_str, "Trevor Spencer", content_html, cover_url, slug, excerpt),
+            post_html(title, date_str, "Trevor Spencer", content_html, cover_url, slug, excerpt, date_raw),
             encoding="utf-8"
         )
         print(f"    → Written: posts/{slug}.html")
