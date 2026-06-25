@@ -201,16 +201,249 @@
      ============================================================ -->
 <div class="page-body">
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="container">
-      <p class="hero-eyebrow">Prophecy meets economics</p>
-      <div class="hero-title-block">
-        <h1 class="hero-main-title">METANOMICS</h1>
-        <p class="hero-subtitle">REVERSE ENGINEERING THE ECONOMY OF ZION</p>
-      </div>
-      <p class="hero-author">Trevor Jared Spencer</p>
-    </div>
+  <!-- ── HERO — scroll-driven Metatron's Cube assembly ── -->
+  <section class="hero hero--animated" id="hero-main" aria-label="Hero">
+    <div class="hero-sticky">
+      <div class="hero-canvas">
+
+        <!-- ── LEFT: Title + description + CTAs ── -->
+        <div class="hero-text-side" id="ml-text-column">
+          <p class="hero-eyebrow">Prophecy meets economics</p>
+          <div class="hero-title-block">
+            <h1 class="hero-main-title">METANOMICS</h1>
+            <p class="hero-subtitle">REVERSE ENGINEERING THE ECONOMY OF ZION</p>
+          </div>
+          <p class="hero-author">Trevor Jared Spencer</p>
+          <p class="hero-description">
+            A groundbreaking synthesis of scripture, prophecy, and economic theory.
+            Metanomics decodes the Return of Jesus timeline — revealing who Metatron is,
+            why All Things in Common powers the New Jerusalem, and how sacred economics
+            defines the Zion society prophesied for the last days.
+          </p>
+          <div class="hero-cta-row">
+            <a href="https://a.co/d/0cPq1r7Z" target="_blank" rel="noopener noreferrer"
+               class="hero-btn hero-btn--primary">Buy on Amazon &rarr;</a>
+            <a href="#ebook-subscribe-form"
+               class="hero-btn hero-btn--secondary">Free E-Book &darr;</a>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: Animated Metatron's Cube / Logo ── -->
+        <div class="hero-logo-side">
+
+        <!-- ══ METATRON'S CUBE SVG ══
+             Colors matched to cover design: dark navy bg, gold sacred
+             geometry (#f5c018), blue radiating rings (#78c2ff).
+             Final state: the actual site logo PNG fades in perfectly.
+             Geometry: 7 circles (R=82) matching cover's flower-of-life.
+             ViewBox: -230 -230 460 460                                 -->
+        <svg class="metatron-svg" id="metatronSvg"
+             viewBox="-230 -230 460 460"
+             xmlns="http://www.w3.org/2000/svg"
+             aria-hidden="true">
+          <defs>
+            <!-- White glow for center area -->
+            <radialGradient id="mlGoldGlow" cx="50%" cy="38%" r="68%">
+              <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Cover blue glow -->
+            <radialGradient id="mlBlueGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#50b0ff" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#50b0ff" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Tight white glow for center -->
+            <radialGradient id="mlCenterGold" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+              <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Subtle glow on lines (cover uses f3 filter) -->
+            <filter id="mlGlow3" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Soft blur for glow blobs -->
+            <filter id="mlBlur16" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="16"/>
+            </filter>
+            <filter id="mlBlur8" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="8"/>
+            </filter>
+          </defs>
+
+          <!-- ── STATIC BACKDROP — always visible, cover-style blue rings ── -->
+          <!-- Matches the radiating circles on the book cover, scaled to viewBox -->
+          <g id="ml-backdrop" opacity="1">
+            <!-- Outermost dim rings (cover: stroke #3a9de0 opacity 0.10) -->
+            <g fill="none" stroke="#3a9de0" opacity="0.10">
+              <circle cx="0" cy="0" r="228" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="220" stroke-width="1"/>
+              <circle cx="0" cy="0" r="212" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="204" stroke-width="1"/>
+            </g>
+            <!-- Mid rings (cover: #50a8e8 opacity 0.15) -->
+            <g fill="none" stroke="#50a8e8" opacity="0.15">
+              <circle cx="0" cy="0" r="186" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="174" stroke-width="1"/>
+              <circle cx="0" cy="0" r="162" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="150" stroke-width="1"/>
+            </g>
+            <!-- Closer rings (cover: #62b4f0 opacity 0.22) -->
+            <g fill="none" stroke="#62b4f0" opacity="0.22">
+              <circle cx="0" cy="0" r="132" stroke-width="2"/>
+              <circle cx="0" cy="0" r="120" stroke-width="1"/>
+              <circle cx="0" cy="0" r="108" stroke-width="2"/>
+            </g>
+            <!-- Inner rings (cover: #78c2ff opacity 0.32) -->
+            <g fill="none" stroke="#78c2ff" opacity="0.32">
+              <circle cx="0" cy="0" r="90"  stroke-width="2.5"/>
+              <circle cx="0" cy="0" r="78"  stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="66"  stroke-width="2.5"/>
+              <circle cx="0" cy="0" r="54"  stroke-width="1.5"/>
+            </g>
+            <!-- Blue glow pool (cover: url(#gBlueGlow) opacity 0.6) -->
+            <ellipse cx="0" cy="0" rx="180" ry="200"
+                     fill="url(#mlBlueGlow)" opacity="0.6"/>
+          </g>
+
+          <!-- ─── Layer 1: Outer bounding circle ───
+               Exact match to cover: stroke #f5c018, r proportional.
+               Cover outer circle: r=178 at center (1510,650).
+               Our scale: 178/82 × 82 → scaled to fit viewBox.
+               Using r=178 in SVG units (scaled to viewBox).
+               Flies in from above.                  -->
+          <g id="ml-outer-ring" style="opacity:0; transform:translateY(-520px);">
+            <!-- Outer bounding circle — gold, matching cover exactly -->
+            <circle cx="0" cy="0" r="178"
+                    fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.45"/>
+            <!-- Second inner ring — cover: r=96 stroke #f5c018 opacity 0.35 -->
+            <circle cx="0" cy="0" r="96"
+                    fill="none" stroke="#ffffff" stroke-width="1" opacity="0.35"/>
+            <!-- Second ring of 6 outer petals (cover: r=82, offset=164, opacity 0.28) -->
+            <g fill="none" stroke="#ffffff" stroke-width="1" opacity="0.28">
+              <circle cx="0"     cy="-164" r="82"/>
+              <circle cx="142"   cy="-82"  r="82"/>
+              <circle cx="142"   cy=" 82"  r="82"/>
+              <circle cx="0"     cy=" 164" r="82"/>
+              <circle cx="-142"  cy=" 82"  r="82"/>
+              <circle cx="-142"  cy="-82"  r="82"/>
+            </g>
+          </g>
+
+          <!-- ─── Layer 2: Top 3 flower-of-life circles ───
+               Cover: 7 circles r=82 at distance 82.
+               Petal centers: top (0,-82), TR (71,-41), TL (-71,-41).
+               Fly in from top.                      -->
+          <g id="ml-top-circles" style="opacity:0; transform:translateY(-380px);">
+            <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.62"
+               filter="url(#mlGlow3)">
+              <circle cx="0"   cy="-82" r="82"/>
+              <circle cx="71"  cy="-41" r="82"/>
+              <circle cx="-71" cy="-41" r="82"/>
+            </g>
+          </g>
+
+          <!-- ─── Layer 3: Bottom 3 flower-of-life circles ───
+               Petal centers: bottom (0,82), BR (71,41), BL (-71,41).
+               Fly in from bottom.                   -->
+          <g id="ml-bottom-circles" style="opacity:0; transform:translateY(380px);">
+            <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.62"
+               filter="url(#mlGlow3)">
+              <circle cx="0"   cy=" 82" r="82"/>
+              <circle cx="71"  cy=" 41" r="82"/>
+              <circle cx="-71" cy=" 41" r="82"/>
+            </g>
+          </g>
+
+          <!-- ─── Layer 4: Metatron's Cube star lines ───
+               Exact from cover: Star of David polygons +
+               6 spokes + hexagon edges + long diagonals.
+               Scale up from center.                 -->
+          <g id="ml-star-lines" class="ml-scale-origin"
+             style="opacity:0; transform:scale(0.15);">
+            <!-- Star of David — cover: stroke #f5c018 stroke-width 1.8 opacity 0.58 -->
+            <polygon points="0,-82 71,41 -71,41"
+                     fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.58"/>
+            <polygon points="0,82 71,-41 -71,-41"
+                     fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.58"/>
+            <!-- 6 spokes — cover: stroke-width 1.2 opacity 0.42 -->
+            <g stroke="#ffffff" stroke-width="1.2" opacity="0.42">
+              <line x1="0"   y1="0" x2="0"   y2="-82"/>
+              <line x1="0"   y1="0" x2="71"  y2="-41"/>
+              <line x1="0"   y1="0" x2="71"  y2=" 41"/>
+              <line x1="0"   y1="0" x2="0"   y2=" 82"/>
+              <line x1="0"   y1="0" x2="-71" y2=" 41"/>
+              <line x1="0"   y1="0" x2="-71" y2="-41"/>
+            </g>
+            <!-- Hexagon edges + long diagonals — cover: stroke-width 0.9 opacity 0.30 -->
+            <g stroke="#ffffff" stroke-width="0.9" opacity="0.30">
+              <!-- Hexagon -->
+              <line x1="0"   y1="-82" x2="71"  y2="-41"/>
+              <line x1="71"  y1="-41" x2="71"  y2=" 41"/>
+              <line x1="71"  y1=" 41" x2="0"   y2=" 82"/>
+              <line x1="0"   y1=" 82" x2="-71" y2=" 41"/>
+              <line x1="-71" y1=" 41" x2="-71" y2="-41"/>
+              <line x1="-71" y1="-41" x2="0"   y2="-82"/>
+              <!-- Long diagonals across all circle centers -->
+              <line x1="0"   y1="-82" x2="71"  y2=" 41"/>
+              <line x1="0"   y1="-82" x2="-71" y2=" 41"/>
+              <line x1="71"  y1="-41" x2="-71" y2="-41"/>
+              <line x1="71"  y1="-41" x2="0"   y2=" 82"/>
+              <line x1="71"  y1="-41" x2="-71" y2=" 41"/>
+              <line x1="71"  y1=" 41" x2="-71" y2="-41"/>
+              <line x1="71"  y1=" 41" x2="-71" y2=" 41"/>
+              <line x1="71"  y1=" 41" x2="0"   y2="-82"/>
+              <line x1="0"   y1=" 82" x2="-71" y2="-41"/>
+              <line x1="0"   y1=" 82" x2="71"  y2="-41"/>
+              <line x1="-71" y1="-41" x2="-71" y2=" 41"/>
+            </g>
+          </g>
+
+          <!-- ─── Layer 5: Center flower circle + golden glow ───
+               Cover: soft golden area glow + center circle at r=82.
+               Scales up from 0, last to land.       -->
+          <g id="ml-center" class="ml-scale-origin"
+             style="opacity:0; transform:scale(0);">
+            <!-- Soft golden area glow — cover: r=190 opacity 0.07 filter blur16 -->
+            <circle cx="0" cy="0" r="190"
+                    fill="#ffffff" opacity="0.07" filter="url(#mlBlur16)"/>
+            <!-- Tighter gold glow -->
+            <ellipse cx="0" cy="-12" rx="100" ry="115"
+                     fill="url(#mlGoldGlow)" opacity="0.7"/>
+            <!-- Center flower circle — gold, cover-exact -->
+            <circle cx="0" cy="0" r="82"
+                    fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.62"
+                    filter="url(#mlGlow3)"/>
+          </g>
+
+          <!-- ─── Layer 6: Final reveal — actual site logo PNG ───
+               Fades in last, replacing the gold geometry with the
+               exact logo as designed. Logo is RGBA transparent,
+               so the dark navy background shows through perfectly. -->
+          <!-- Logo sized to match the inner flower-of-life span (±164 from center = 328px).
+               Centered at SVG origin so it sits exactly inside the drawn circles. -->
+          <image id="ml-logo-final"
+                 href="assets/images/metanomics-logo.png"
+                 x="-164" y="-164" width="328" height="328"
+                 preserveAspectRatio="xMidYMid meet"
+                 style="opacity:0;"/>
+
+        </svg><!-- end .metatron-svg -->
+
+        </div><!-- end .hero-logo-side -->
+
+        <!-- ── Scroll cue ── -->
+        <div class="hero-scroll-hint" id="mlScrollHint" aria-hidden="true">
+          <span>Scroll</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+
+      </div><!-- end .hero-canvas -->
+    </div><!-- end .hero-sticky -->
   </section>
 
   <!-- ── YOUTUBE VIDEO ── -->
@@ -560,6 +793,129 @@
       e.target.querySelector('button[type="submit"]')
     );
   });
+
+  /* ══════════════════════════════════════════════════════════════
+     METATRON'S CUBE — Scroll-Driven Assembly Animation
+     ══════════════════════════════════════════════════════════════
+     Colors: dark navy bg (#060c1c), gold geometry (#f5c018),
+     blue radiating rings (#78c2ff) — all from the book cover.
+
+     Layer schedule (scroll progress 0 → 1):
+       0.00–0.25  Outer bounding ring + outer petals  (from above)
+       0.10–0.42  Top 3 flower circles                (from top)
+       0.10–0.42  Bottom 3 flower circles             (from bottom)
+       0.38–0.62  Star lines + diagonals              (scale from center)
+       0.50–0.68  Center circle + gold glow           (scale up)
+       0.65–0.82  Site logo PNG cross-fades in        (crystallize)
+       0.64–0.78  Eyebrow text                        (rise + fade)
+       0.70–0.86  Title + subtitle                    (rise + fade)
+       0.78–0.92  Author name                         (rise + fade)
+  ════════════════════════════════════════════════════════════════ */
+  (function () {
+    'use strict';
+
+    var section = document.getElementById('hero-main');
+    if (!section) return;
+
+    // SVG layer elements (text column is CSS-animated, not JS-driven)
+    var elOuterRing     = document.getElementById('ml-outer-ring');
+    var elTopCircles    = document.getElementById('ml-top-circles');
+    var elBottomCircles = document.getElementById('ml-bottom-circles');
+    var elStarLines     = document.getElementById('ml-star-lines');
+    var elCenter        = document.getElementById('ml-center');
+    var elLogoFinal     = document.getElementById('ml-logo-final');
+    var elHint          = document.getElementById('mlScrollHint');
+
+    // ── Easing ──────────────────────────────────────────────────
+    function easeOut3(t)   { return 1 - Math.pow(1 - t, 3); }
+    function easeInOut2(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function sub(p, s, e)  { return Math.max(0, Math.min(1, (p - s) / (e - s))); }
+
+    function applyTY(el, ty, opacity) {
+      if (!el) return;
+      el.style.transform = 'translateY(' + ty.toFixed(1) + 'px)';
+      el.style.opacity   = opacity.toFixed(4);
+    }
+    function applyScale(el, scale, opacity) {
+      if (!el) return;
+      el.style.transform = 'scale(' + scale.toFixed(4) + ')';
+      el.style.opacity   = opacity.toFixed(4);
+    }
+    function applyOpacity(el, opacity) {
+      if (!el) return;
+      el.style.opacity = opacity.toFixed(4);
+    }
+
+    // ── Core: drive all SVG layers from a single p (0=apart, 1=assembled) ──
+    function applyState(p) {
+      var logoT    = easeInOut2(sub(p, 0.65, 0.82));
+      var geomFade = 1 - logoT * 0.70;
+
+      // 1. Outer ring — fly from above
+      var t1 = easeOut3(sub(p, 0.00, 0.25));
+      applyTY(elOuterRing, lerp(-520, 0, t1), t1 * geomFade);
+
+      // 2. Top circles — fly from top
+      var t2 = easeOut3(sub(p, 0.10, 0.42));
+      applyTY(elTopCircles, lerp(-380, 0, t2), t2 * geomFade);
+
+      // 3. Bottom circles — fly from bottom
+      var t3 = easeOut3(sub(p, 0.10, 0.42));
+      applyTY(elBottomCircles, lerp(380, 0, t3), t3 * geomFade);
+
+      // 4. Star lines — scale from center
+      var t4 = easeInOut2(sub(p, 0.38, 0.62));
+      applyScale(elStarLines, lerp(0.15, 1, t4), t4 * geomFade);
+
+      // 5. Center glow — scale up
+      var t5 = easeOut3(sub(p, 0.50, 0.68));
+      applyScale(elCenter, lerp(0, 1, t5), t5 * geomFade);
+
+      // 6. Logo PNG
+      applyOpacity(elLogoFinal, logoT);
+    }
+
+    // ── Phase 1: load animation — assembles p: 0 → 1 on page open ──
+    var LOAD_MS   = 1600;
+    var loadStart = null;
+    var loadDone  = false;
+
+    function loadTick(ts) {
+      if (!loadStart) loadStart = ts;
+      var p = Math.min(1, (ts - loadStart) / LOAD_MS);
+      applyState(p);
+      if (p < 1) {
+        requestAnimationFrame(loadTick);
+      } else {
+        loadDone = true;
+      }
+    }
+    requestAnimationFrame(loadTick);
+
+    // ── Phase 2: scroll — reverses the animation (1 → 0) as user scrolls ──
+    function getScrollP() {
+      var scrollY    = window.scrollY || window.pageYOffset;
+      var scrollable = section.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return 0;
+      return Math.max(0, Math.min(1, scrollY / scrollable));
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!loadDone) return;   // Don't interrupt the load animation
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var sp = getScrollP();
+          if (elHint) elHint.classList.toggle('ml-hidden', sp > 0.03);
+          applyState(1 - sp);  // Fully assembled at scroll=0, disassembles as you scroll
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+  })();
 </script>
 
 </body>

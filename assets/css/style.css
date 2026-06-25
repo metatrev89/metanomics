@@ -237,6 +237,231 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
+/* ============================================================
+   HERO ANIMATED — Scroll-driven Metatron's Cube Assembly
+   ============================================================ */
+.hero--animated {
+  position: relative;
+  background: var(--blue-nav); /* matches site nav/header blue */
+  height: 150vh;              /* 50vh of scroll drives the reversal */
+  padding: 0;
+}
+
+/* Text column slides in from the left on page load, then stays put */
+@keyframes ml-text-in {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.hero-sticky {
+  position: sticky;
+  top: var(--nav-height);
+  height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Site blue background with subtle radial depth */
+.hero-sticky::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 42%, #4a9ed8 0%, #357eba 45%, #2a6a9a 100%);
+  pointer-events: none;
+}
+
+.hero-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+/* Left column — title, description, CTAs */
+.hero-text-side {
+  flex: 0 1 44%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  animation: ml-text-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+/* Right column — SVG wrapper */
+.hero-logo-side {
+  flex: 0 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG sizing — square, fills the right column */
+.metatron-svg {
+  width: min(46vh, 46vw, 420px);
+  height: min(46vh, 46vw, 420px);
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* Description paragraph */
+.hero-description {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.82rem, 1.3vw, 0.97rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 0.25rem;
+}
+
+/* CTA button row */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.hero-btn--primary {
+  background: var(--amber);
+  color: var(--dark-navy);
+  border: 1px solid var(--amber);
+}
+.hero-btn--primary:hover {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+  color: var(--dark-navy);
+}
+
+.hero-btn--secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+.hero-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* Ensure SVG groups that need center-origin scaling get it */
+.metatron-svg .ml-scale-origin {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* .hero-text-overlay and .ml-text-layer removed — text now lives in .hero-text-side */
+
+/* Override hero text colors for dark bg */
+.hero--animated .hero-eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.6rem;
+}
+
+.hero--animated .hero-main-title {
+  color: #ffffff;
+  font-size: clamp(2.2rem, 6.5vw, 5.5rem);
+  text-shadow: 0 0 40px rgba(79, 176, 255, 0.35);
+  margin-bottom: 0.35rem;
+}
+
+.hero--animated .hero-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.hero--animated .hero-author {
+  color: #f5c018;
+  margin-top: 0.4rem;
+}
+
+/* Scroll hint — bouncing arrow at bottom */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hero-scroll-hint svg {
+  width: 18px;
+  height: 18px;
+  animation: ml-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes ml-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%       { transform: translateY(7px); opacity: 0.9; }
+}
+
+.hero-scroll-hint.ml-hidden {
+  opacity: 0;
+}
+
+/* Mobile — stack to column */
+@media (max-width: 720px) {
+  .hero--animated { height: 180vh; }
+
+  .hero-canvas {
+    flex-direction: column;
+    padding: 2rem 1.25rem 5rem;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .hero-text-side {
+    flex: none;
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-logo-side {
+    flex: none;
+    width: 100%;
+  }
+
+  .metatron-svg {
+    width: min(70vw, 54vh, 340px);
+    height: min(70vw, 54vh, 340px);
+  }
+
+  .hero-cta-row { justify-content: center; }
+}
+
 .hero-eyebrow {
   font-family: 'Anton', sans-serif;
   font-size: 0.7rem;
