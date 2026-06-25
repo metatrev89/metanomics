@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://i.ytimg.com">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/style.css?v=4">
+  <link rel="stylesheet" href="assets/css/style.css?v=5">
 
   <!-- ============================================================
        STRUCTURED DATA (JSON-LD) — SEO Schema Markup
@@ -181,10 +181,10 @@
         width="44" height="44"
       >
     </a>
-    <div class="nav-brand-text">
+    <a href="index.html" class="nav-brand-text">
       <span class="nav-title">Metanomics</span>
       <span class="nav-subtitle">Reverse Engineering The Economy of Zion</span>
-    </div>
+    </a>
 
     <!-- Desktop links -->
     <div class="nav-links">
@@ -237,7 +237,7 @@
             <a href="https://a.co/d/0cPq1r7Z" target="_blank" rel="noopener noreferrer"
                class="hero-btn hero-btn--primary">Buy on Amazon &rarr;</a>
             <a href="#ebook-subscribe-form"
-               class="hero-btn hero-btn--secondary">Free E-Book &darr;</a>
+               class="hero-btn hero-btn--secondary js-ebook-cta">Free E-Book &darr;</a>
           </div>
         </div>
 
@@ -695,13 +695,39 @@
      ============================================================ -->
 <script>
   /* ---- Nav Brand: smooth scroll to top on homepage ---- */
-  document.querySelector('.nav-brand').addEventListener('click', function(e) {
+  function navHomeClick(e) {
     const path = window.location.pathname;
     if (path.endsWith('index.html') || path === '/' || path.endsWith('/metanomics/') || path.endsWith('/metanomics')) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  });
+  }
+  document.querySelector('.nav-brand').addEventListener('click', navHomeClick);
+  document.querySelector('.nav-brand-text').addEventListener('click', navHomeClick);
+
+  /* ---- Ebook CTA: scroll without adding hash to URL ---- */
+  var ebookCta = document.querySelector('.js-ebook-cta');
+  if (ebookCta) {
+    ebookCta.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById('ebook-subscribe-form');
+      if (target) {
+        var navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 64;
+        var top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        // Clean any hash from the URL so refresh always reloads at the top
+        history.replaceState(null, '', window.location.pathname);
+      }
+    });
+  }
+
+  /* ---- On load: strip hash so a refresh from anywhere reloads clean ---- */
+  if (window.location.hash === '#ebook-subscribe-form') {
+    // Scroll to section (normal browser behavior) then clear the hash
+    setTimeout(function() {
+      history.replaceState(null, '', window.location.pathname);
+    }, 100);
+  }
 
 
   /* ---- Mobile Nav Active State ---- */

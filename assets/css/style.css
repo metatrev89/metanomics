@@ -138,6 +138,8 @@ h1, h2, h3, h4 {
   line-height: 1.15;
   margin-left: 1.25rem; /* gap between logo and title (desktop) */
   margin-right: auto;   /* pushes nav-links to far right (desktop) */
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav-title {
