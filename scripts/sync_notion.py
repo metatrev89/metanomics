@@ -126,6 +126,24 @@ def format_date(date_str: str) -> str:
         return date_str
 
 # ── Blocks → HTML ────────────────────────────────────────────────────────────
+def fetch_all_blocks(block_id: str) -> list:
+    """Recursively fetch all blocks including children of toggle blocks."""
+    all_blocks = []
+    cursor = None
+    while True:
+        result = notion_get_block_children(block_id, start_cursor=cursor)
+        blocks = result.get("results", [])
+        for b in blocks:
+            btype = b.get("type", "")
+            # Recursively fetch children for toggle blocks (and any other nested blocks)
+            if b.get("has_children") and btype in ("toggle", "bulleted_list_item", "numbered_list_item", "quote"):
+                b["_children"] = fetch_all_blocks(b["id"])
+            all_blocks.append(b)
+        if not result.get("has_more"):
+            break
+        cursor = result.get("next_cursor")
+    return all_blocks
+
 def blocks_to_html(blocks: list) -> str:
     out = []
     i = 0
@@ -207,6 +225,17 @@ def blocks_to_html(blocks: list) -> str:
                 url = data["external"]["url"]
                 safe_url = html.escape(url)
                 out.append(f'<p><a href="{safe_url}" target="_blank" rel="noopener">[Video: {safe_url}]</a></p>')
+
+        elif btype == "toggle":
+            summary_text = rich_text_to_html(data.get("rich_text", []))
+            children = b.get("_children", [])
+            inner_html = blocks_to_html(children) if children else ""
+            out.append(
+                f'<details class="faq-toggle">'
+                f'<summary>{summary_text}</summary>'
+                f'<div class="faq-answer">{inner_html}</div>'
+                f'</details>'
+            )
 
         elif btype == "bookmark":
             url = data.get("url", "")
@@ -620,15 +649,8 @@ def main():
 
         print(f"  Processing: '{title}' ({slug})")
 
-        # Fetch full page content (blocks), paginating if needed
-        all_blocks = []
-        cursor = None
-        while True:
-            result = notion_get_block_children(page_id, start_cursor=cursor)
-            all_blocks.extend(result.get("results", []))
-            if not result.get("has_more"):
-                break
-            cursor = result.get("next_cursor")
+        # Fetch full page content (blocks), recursively including toggle children
+        all_blocks = fetch_all_blocks(page_id)
 
         content_html = blocks_to_html(all_blocks)
 

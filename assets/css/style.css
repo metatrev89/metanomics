@@ -1326,6 +1326,48 @@ h1, h2, h3, h4 {
 
 .post-content hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 
+/* ── FAQ Toggles (Notion toggle blocks) ── */
+.post-content details.faq-toggle {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 1rem 0;
+  overflow: hidden;
+}
+.post-content details.faq-toggle summary {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark-navy);
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-card, #f8f9fb);
+}
+.post-content details.faq-toggle summary::-webkit-details-marker { display: none; }
+.post-content details.faq-toggle summary::before {
+  content: '+';
+  font-size: 1.25rem;
+  color: var(--amber);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.post-content details.faq-toggle[open] summary::before {
+  content: '−';
+}
+.post-content .faq-answer {
+  padding: 1rem 1.25rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+.post-content .faq-answer p { margin: 0 0 0.75rem; }
+.post-content .faq-answer p:last-child { margin-bottom: 0; }
+
 .post-content img { border-radius: var(--radius); margin: 2rem auto; box-shadow: var(--shadow); }
 
 .post-content figcaption {
