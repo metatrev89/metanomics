@@ -245,7 +245,7 @@ h1, h2, h3, h4 {
 .hero--animated {
   position: relative;
   background: var(--blue-nav); /* matches site nav/header blue */
-  height: 150vh;              /* 50vh of scroll drives the reversal */
+  height: 100vh;
   padding: 0;
 }
 
@@ -435,7 +435,7 @@ h1, h2, h3, h4 {
 
 /* Mobile — stack to column */
 @media (max-width: 720px) {
-  .hero--animated { height: 180vh; }
+  .hero--animated { height: 100vh; }
 
   .hero-canvas {
     flex-direction: column;

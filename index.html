@@ -893,27 +893,10 @@
     }
     requestAnimationFrame(loadTick);
 
-    // ── Phase 2: scroll — reverses the animation (1 → 0) as user scrolls ──
-    function getScrollP() {
-      var scrollY    = window.scrollY || window.pageYOffset;
-      var scrollable = section.offsetHeight - window.innerHeight;
-      if (scrollable <= 0) return 0;
-      return Math.max(0, Math.min(1, scrollY / scrollable));
+    // Hide scroll hint after load completes
+    if (elHint) {
+      setTimeout(function () { elHint.classList.add('ml-hidden'); }, LOAD_MS + 400);
     }
-
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (!loadDone) return;   // Don't interrupt the load animation
-      if (!ticking) {
-        window.requestAnimationFrame(function () {
-          var sp = getScrollP();
-          if (elHint) elHint.classList.toggle('ml-hidden', sp > 0.03);
-          applyState(1 - sp);  // Fully assembled at scroll=0, disassembles as you scroll
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
 
   })();
 </script>
