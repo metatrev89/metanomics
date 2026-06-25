@@ -1375,18 +1375,22 @@ h1, h2, h3, h4 {
   .nav-subtitle { font-size: 0.5rem; letter-spacing: 0.12em; }
   .nav-author { font-size: 0.65rem; }
 
-  /* Absolutely center brand text within nav-inner */
-  .nav-inner { position: relative; }
+  /* Grid nav: logo | [centered text] | hamburger */
+  .nav-inner {
+    display: grid;
+    grid-template-columns: 70px 1fr 44px;
+    align-items: center;
+    gap: 0;
+    padding: 0 1rem;
+  }
+  .nav-brand   { justify-self: start; }
   .nav-brand-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     margin: 0;
     text-align: center;
     align-items: center;
-    pointer-events: none;
+    white-space: nowrap;
   }
+  .nav-menu-btn { justify-self: end; }
 
   .youtube-section { padding: 3rem 0; }
   .amazon-section { padding: 3rem 0; }
