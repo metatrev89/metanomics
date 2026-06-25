@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Metanomics Blog</title>
+    <link>https://www.metanomics.org/blog.html</link>
+    <description>Reverse Engineering The Economy of Zion — Prophecy meets economics.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Jun 2026 01:42:03 -0000</lastBuildDate>
+    <atom:link href="https://www.metanomics.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>AI: Redemption from the Fall, or the Downfall of Humanity?</title>
+      <link>https://www.metanomics.org/posts/ai-redemption-from-the-fall-or-the-downfall-of-humanity.html</link>
+      <guid isPermaLink="true">https://www.metanomics.org/posts/ai-redemption-from-the-fall-or-the-downfall-of-humanity.html</guid>
+      <description>In this blog post I outline three specific ways I see AI helping to return mankind toward it’s primordial condition… A controversial take in a world of AI skepticism and fear. Let me know if you think these claims are valid or if I have gone to the dark side!  </description>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 -0000</pubDate>
+    </item>
+    <item>
+      <title>Metanomics Summary &amp; Overview</title>
+      <link>https://www.metanomics.org/posts/metanomics-summary-overview.html</link>
+      <guid isPermaLink="true">https://www.metanomics.org/posts/metanomics-summary-overview.html</guid>
+      <description>The goal for me is to make the content covered in my book METANOMICS : REVERSE ENGINEERING THE ECONOMY OF ZION as accessible to as many people as possible.
+
+For this reason I have compiled a summary/overview (with Grok's help) for each individual chapter in the book below to make for quick reading.
+
+Enjoy! :) </description>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 -0000</pubDate>
+    </item>
+  </channel>
+</rss>
