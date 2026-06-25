@@ -536,7 +536,7 @@
   </section>
 
   <!-- ── FREE EBOOK DOWNLOAD ── -->
-  <section class="ebook-section">
+  <section class="ebook-section" id="ebook-subscribe-form">
     <div class="container">
       <h2 class="section-title">Download Free E-Book</h2>
 
@@ -562,7 +562,7 @@
                In Beehiiv: Settings → Forms → Create Form → Embed
                Set your welcome email to include the PDF download link.
                ============================================================ -->
-          <form id="ebook-subscribe-form">
+          <form id="ebook-form">
             <div class="form-row">
               <div class="form-field">
                 <label for="ebook-fname">First Name *</label>
@@ -789,7 +789,7 @@
     }
   }
 
-  document.getElementById('ebook-subscribe-form').addEventListener('submit', e => {
+  document.getElementById('ebook-form').addEventListener('submit', e => {
     e.preventDefault();
     subscribeToBeehiiv(
       { email: e.target.email.value, first_name: e.target.firstName.value, last_name: e.target.lastName.value },
