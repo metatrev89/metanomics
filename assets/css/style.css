@@ -1375,22 +1375,25 @@ h1, h2, h3, h4 {
   .nav-subtitle { font-size: 0.5rem; letter-spacing: 0.12em; }
   .nav-author { font-size: 0.65rem; }
 
-  /* Grid nav: equal 1fr on both sides forces true screen center */
-  .nav-inner {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 0;
-    padding: 0 1rem;
-  }
-  .nav-brand      { justify-self: start; }
+  /* Brand text: fixed to viewport so it's always at true screen center */
   .nav-brand-text {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: var(--nav-height);
     margin: 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+    z-index: 0;
   }
-  .nav-menu-btn   { justify-self: end; }
+  /* Keep logo and hamburger above the centered text */
+  .nav-brand    { position: relative; z-index: 1; }
+  .nav-menu-btn { position: relative; z-index: 1; }
 
   .youtube-section { padding: 3rem 0; }
   .amazon-section { padding: 3rem 0; }
