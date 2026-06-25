@@ -1375,13 +1375,17 @@ h1, h2, h3, h4 {
   .nav-subtitle { font-size: 0.5rem; letter-spacing: 0.12em; }
   .nav-author { font-size: 0.65rem; }
 
-  /* Center brand text between logo and hamburger */
+  /* Absolutely center brand text within nav-inner */
+  .nav-inner { position: relative; }
   .nav-brand-text {
-    flex: 1;           /* fills the middle */
-    margin-left: 0;
-    margin-right: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
     text-align: center;
     align-items: center;
+    pointer-events: none;
   }
 
   .youtube-section { padding: 3rem 0; }
