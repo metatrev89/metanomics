@@ -52,7 +52,7 @@ jobs:
           fi
 
       - name: Wait for GitHub Pages to deploy
-        run: sleep 45
+        run: sleep 90
 
       - name: Ping Bing (IndexNow)
         continue-on-error: true
