@@ -437,9 +437,10 @@ h1, h2, h3, h4 {
 
   .hero-canvas {
     flex-direction: column;
-    padding: 2rem 1.25rem 5rem;
-    gap: 1.5rem;
-    justify-content: center;
+    padding: 1.5rem 1.25rem 2rem;
+    gap: 1rem;
+    justify-content: flex-start;  /* start from top so eyebrow isn't clipped */
+    align-items: center;
   }
 
   .hero-text-side {
@@ -447,6 +448,7 @@ h1, h2, h3, h4 {
     max-width: 100%;
     text-align: center;
     align-items: center;
+    gap: 0.6rem;
   }
 
   .hero-logo-side {
@@ -459,7 +461,17 @@ h1, h2, h3, h4 {
     height: min(70vw, 54vh, 340px);
   }
 
-  .hero-cta-row { justify-content: center; }
+  /* CTA buttons: equal size, centered */
+  .hero-cta-row {
+    justify-content: center;
+    width: 100%;
+    max-width: 380px;
+  }
+  .hero-cta-row .hero-btn {
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+  }
 }
 
 .hero-eyebrow {
@@ -1340,8 +1352,19 @@ h1, h2, h3, h4 {
   .nav-links { display: none; }
   .nav-menu-btn { display: block; }
   .nav-title { font-size: 1.5rem; }
-  .nav-subtitle { font-size: 0.5rem; }
+  .nav-subtitle { font-size: 0.5rem; letter-spacing: 0.12em; }
   .nav-author { font-size: 0.65rem; }
+
+  /* Center nav brand text across the full header width */
+  .nav-inner { position: relative; }
+  .nav-brand-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    align-items: center;
+    pointer-events: none;
+  }
 
   .youtube-section { padding: 3rem 0; }
   .amazon-section { padding: 3rem 0; }
