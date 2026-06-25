@@ -42,7 +42,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "Notion Sync Bot"
-          git add posts/ blog.html assets/images/posts/
+          git add posts/ blog.html assets/images/posts/ sitemap.xml feed.xml
           # Only commit if there are actual changes
           if git diff --staged --quiet; then
             echo "No changes to commit."
@@ -50,3 +50,14 @@ jobs:
             git commit -m "chore: sync blog posts from Notion [skip ci]"
             git push
           fi
+
+      - name: Wait for GitHub Pages to deploy
+        run: sleep 45
+
+      - name: Ping Bing (IndexNow)
+        continue-on-error: true
+        run: python scripts/ping_bing.py
+
+      - name: Ping Google
+        continue-on-error: true
+        run: python scripts/ping_google.py
