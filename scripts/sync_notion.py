@@ -126,91 +126,14 @@ def format_date(date_str: str) -> str:
         return date_str
 
 # ── Blocks → HTML ────────────────────────────────────────────────────────────
-def _flush_faq_items(faq_items: list, out: list) -> None:
-    """Emit accumulated FAQ toggle items as a styled section."""
-    if not faq_items:
-        return
-    out.append('<section class="post-faq">')
-    out.append('<h2 class="post-faq__heading">Frequently Asked Questions</h2>')
-    out.append('<div class="post-faq__list">')
-    out.extend(faq_items)
-    out.append('</div>')
-    out.append('</section>')
-    faq_items.clear()
-
-
-def blocks_to_html(blocks: list, toggle_children: dict = None) -> str:
-    toggle_children = toggle_children or {}
+def blocks_to_html(blocks: list) -> str:
     out = []
-    faq_items = []   # accumulates <details> elements while in FAQ mode
-    in_faq = False
     i = 0
-
     while i < len(blocks):
         b = blocks[i]
         btype = b.get("type", "")
         data  = b.get(btype, {})
 
-        # ── FAQ heading detection ──────────────────────────────────────────
-        if btype == "heading_2":
-            text_plain = plain_text(data.get("rich_text", []))
-            if "faq" in text_plain.lower() or "frequently asked" in text_plain.lower():
-                # Start collecting FAQ toggles; don't emit the heading (post-faq renders its own)
-                in_faq = True
-                i += 1
-                continue
-            else:
-                # Any other h2 exits FAQ mode
-                _flush_faq_items(faq_items, out)
-                in_faq = False
-
-        # ── While in FAQ mode, render toggles as accordion items ──────────
-        if in_faq:
-            if btype == "toggle":
-                question = plain_text(data.get("rich_text", []))
-                block_id = b.get("id", "")
-                children = toggle_children.get(block_id, [])
-                # Build answer HTML from toggle children
-                answer_parts = []
-                child_i = 0
-                li_buf = []
-                while child_i < len(children):
-                    c = children[child_i]
-                    ctype = c.get("type", "")
-                    cdata = c.get(ctype, {})
-                    if ctype == "paragraph":
-                        if li_buf:
-                            answer_parts.append("<ul>\n" + "\n".join(f"  <li>{x}</li>" for x in li_buf) + "\n</ul>")
-                            li_buf = []
-                        t = rich_text_to_html(cdata.get("rich_text", []))
-                        if t.strip():
-                            answer_parts.append(f"<p>{t}</p>")
-                    elif ctype == "bulleted_list_item":
-                        li_buf.append(rich_text_to_html(cdata.get("rich_text", [])))
-                    elif ctype == "numbered_list_item":
-                        li_buf.append(rich_text_to_html(cdata.get("rich_text", [])))
-                    child_i += 1
-                if li_buf:
-                    answer_parts.append("<ul>\n" + "\n".join(f"  <li>{x}</li>" for x in li_buf) + "\n</ul>")
-                answer_html = "\n".join(answer_parts) or "<p></p>"
-                safe_q = html.escape(question)
-                faq_items.append(
-                    f'<details class="faq-item">\n'
-                    f'  <summary class="faq-question">{safe_q}</summary>\n'
-                    f'  <div class="faq-answer">{answer_html}</div>\n'
-                    f'</details>'
-                )
-                i += 1
-                continue
-            elif btype not in ("divider",):
-                # Non-toggle block: flush FAQ section and fall through to normal rendering
-                _flush_faq_items(faq_items, out)
-                in_faq = False
-            else:
-                i += 1
-                continue
-
-        # ── Normal block rendering ─────────────────────────────────────────
         if btype == "paragraph":
             text = rich_text_to_html(data.get("rich_text", []))
             if text.strip():
@@ -245,20 +168,6 @@ def blocks_to_html(blocks: list, toggle_children: dict = None) -> str:
                 i += 1
             out.append("<ol>\n" + "\n".join(items) + "\n</ol>")
             continue
-
-        elif btype == "toggle":
-            # Non-FAQ toggle: render as a plain details/summary
-            question = rich_text_to_html(data.get("rich_text", []))
-            block_id = b.get("id", "")
-            children = toggle_children.get(block_id, [])
-            inner = " ".join(
-                rich_text_to_html(c.get(c.get("type",""), {}).get("rich_text", []))
-                for c in children if c.get("type") == "paragraph"
-            )
-            out.append(
-                f'<details><summary>{question}</summary>'
-                f'<div style="padding:0.5rem 0 0.5rem 1rem">{inner}</div></details>'
-            )
 
         elif btype == "quote":
             text = rich_text_to_html(data.get("rich_text", []))
@@ -308,46 +217,10 @@ def blocks_to_html(blocks: list, toggle_children: dict = None) -> str:
 
         i += 1
 
-    # Flush any FAQ section at end of document
-    _flush_faq_items(faq_items, out)
-
     return "\n".join(out)
 
-
-# ── FAQ pair extraction (for FAQPage schema) ─────────────────────────────────
-def extract_faq_pairs(blocks: list, toggle_children: dict = None) -> list:
-    """Return list of {question, answer} dicts for FAQPage JSON-LD schema."""
-    toggle_children = toggle_children or {}
-    pairs = []
-    in_faq = False
-    for b in blocks:
-        btype = b.get("type", "")
-        data  = b.get(btype, {})
-        if btype == "heading_2":
-            text = plain_text(data.get("rich_text", []))
-            in_faq = "faq" in text.lower() or "frequently asked" in text.lower()
-            continue
-        if in_faq and btype == "toggle":
-            question = plain_text(data.get("rich_text", []))
-            block_id = b.get("id", "")
-            children = toggle_children.get(block_id, [])
-            answer_parts = []
-            for c in children:
-                ctype = c.get("type", "")
-                cdata = c.get(ctype, {})
-                if ctype in ("paragraph", "bulleted_list_item", "numbered_list_item"):
-                    t = plain_text(cdata.get("rich_text", []))
-                    if t.strip():
-                        answer_parts.append(t)
-            answer = " ".join(answer_parts).strip()
-            if question and answer:
-                pairs.append({"question": question, "answer": answer})
-        elif in_faq and btype not in ("toggle", "divider"):
-            in_faq = False
-    return pairs
-
 # ── Post HTML template ───────────────────────────────────────────────────────
-def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, date_raw="", faq_pairs=None):
+def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, date_raw=""):
     cover_tag = (
         f'<div class="post-cover-wrap"><img class="post-cover" src="{html.escape(cover_url)}" alt="{html.escape(title)}" loading="lazy"></div>'
         if cover_url else ""
@@ -357,26 +230,6 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
     desc_short = html.escape(excerpt[:160]) if excerpt else html.escape(title)
     date_iso = f"{date_raw}T00:00:00Z" if date_raw and "T" not in date_raw else (date_raw or "")
     today_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    # Build optional FAQPage schema block
-    import json as _json
-    faq_schema = ""
-    if faq_pairs:
-        main_entity = [
-            {
-                "@type": "Question",
-                "name": p["question"],
-                "acceptedAnswer": {"@type": "Answer", "text": p["answer"]}
-            }
-            for p in faq_pairs
-        ]
-        faq_obj = _json.dumps(
-            {"@type": "FAQPage", "mainEntity": main_entity},
-            ensure_ascii=False,
-            indent=6
-        )
-        faq_schema = ",\n      " + faq_obj
-
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -463,7 +316,7 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
           {{ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.metanomics.org/blog.html" }},
           {{ "@type": "ListItem", "position": 3, "name": "{html.escape(title)}", "item": "https://www.metanomics.org/posts/{slug}.html" }}
         ]
-      }}{faq_schema}
+      }}
     ]
   }}
   </script>
@@ -777,27 +630,12 @@ def main():
                 break
             cursor = result.get("next_cursor")
 
-        # Pre-fetch children of toggle blocks (needed for FAQ rendering + schema)
-        toggle_children = {}
-        for b in all_blocks:
-            if b.get("type") == "toggle":
-                block_id = b["id"]
-                try:
-                    tc_result = notion_get_block_children(block_id)
-                    toggle_children[block_id] = tc_result.get("results", [])
-                except Exception as e:
-                    print(f"    Warning: could not fetch toggle children for {block_id}: {e}")
-                    toggle_children[block_id] = []
-
-        content_html = blocks_to_html(all_blocks, toggle_children)
-        faq_pairs = extract_faq_pairs(all_blocks, toggle_children)
-        if faq_pairs:
-            print(f"    FAQ: {len(faq_pairs)} Q&A pair(s) found — injecting FAQPage schema.")
+        content_html = blocks_to_html(all_blocks)
 
         # Write individual post file
         post_file = POSTS_DIR / f"{slug}.html"
         post_file.write_text(
-            post_html(title, date_str, "Trevor Spencer", content_html, cover_url, slug, excerpt, date_raw, faq_pairs=faq_pairs),
+            post_html(title, date_str, "Trevor Spencer", content_html, cover_url, slug, excerpt, date_raw),
             encoding="utf-8"
         )
         print(f"    → Written: posts/{slug}.html")
