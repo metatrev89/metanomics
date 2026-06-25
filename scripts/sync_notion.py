@@ -225,58 +225,99 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
         f'<div class="post-cover-wrap"><img class="post-cover" src="{html.escape(cover_url)}" alt="{html.escape(title)}" loading="lazy"></div>'
         if cover_url else ""
     )
+    og_image = html.escape(cover_url) if cover_url else "https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png"
+    desc = html.escape(excerpt[:200]) if excerpt else html.escape(title)
+    desc_short = html.escape(excerpt[:160]) if excerpt else html.escape(title)
+    date_iso = f"{date_raw}T00:00:00Z" if date_raw and "T" not in date_raw else (date_raw or "")
+    today_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(title)} | Metanomics</title>
-  <meta name="description" content="{html.escape(excerpt[:160]) if excerpt else html.escape(title)}">
+  <meta name="description" content="{desc_short}">
 
+  <!-- Open Graph -->
   <meta property="og:title" content="{html.escape(title)}">
-  <meta property="og:description" content="{html.escape(excerpt[:200]) if excerpt else ''}">
-  <meta property="og:image" content="{html.escape(cover_url) if cover_url else 'https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png'}">
+  <meta property="og:description" content="{desc}">
+  <meta property="og:image" content="{og_image}">
   <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.metanomics.org/posts/{slug}.html">
   <meta property="og:site_name" content="Metanomics">
+  <meta property="article:published_time" content="{date_iso}">
+  <meta property="article:modified_time" content="{today_iso}">
+  <meta property="article:author" content="https://www.metanomics.org/#person">
+  <meta property="article:section" content="Prophecy &amp; Economics">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{html.escape(title)}">
+  <meta name="twitter:description" content="{desc}">
+  <meta name="twitter:image" content="{og_image}">
+  <meta name="twitter:site" content="@metatrev89">
+  <meta name="twitter:creator" content="@metatrev89">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.metanomics.org/posts/{slug}.html">
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Metanomics Blog" href="https://www.metanomics.org/feed.xml">
 
   <link rel="icon" type="image/png" href="../assets/images/metanomics-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.metanomics.org/posts/{slug}.html">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@metatrev89">
-  <meta name="twitter:creator" content="@metatrev89">
-  <meta property="og:see_also" content="https://www.youtube.com/@metatrev89">
-  <meta property="og:see_also" content="https://www.instagram.com/metatrev89">
-
-  <!-- BlogPosting Schema -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{html.escape(title)}",
-    "description": "{html.escape(excerpt[:200]) if excerpt else html.escape(title)}",
-    "image": "{html.escape(cover_url) if cover_url else 'https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png'}",
-    "datePublished": "{date_raw}",
-    "author": {{
-      "@type": "Person",
-      "name": "Trevor Jared Spencer",
-      "url": "https://www.metanomics.org"
-    }},
-    "publisher": {{
-      "@type": "Organization",
-      "name": "Metanomics",
-      "url": "https://www.metanomics.org"
-    }},
-    "mainEntityOfPage": {{
-      "@type": "WebPage",
-      "@id": "https://www.metanomics.org/posts/{slug}.html"
-    }}
+    "@graph": [
+      {{
+        "@type": "BlogPosting",
+        "@id": "https://www.metanomics.org/posts/{slug}.html#article",
+        "headline": "{html.escape(title)}",
+        "description": "{desc}",
+        "image": "{og_image}",
+        "datePublished": "{date_iso}",
+        "dateModified": "{today_iso}",
+        "author": {{
+          "@type": "Person",
+          "@id": "https://www.metanomics.org/#person",
+          "name": "Trevor Jared Spencer",
+          "url": "https://www.metanomics.org"
+        }},
+        "publisher": {{
+          "@type": "Organization",
+          "@id": "https://www.metanomics.org/#website",
+          "name": "Metanomics",
+          "url": "https://www.metanomics.org",
+          "logo": {{
+            "@type": "ImageObject",
+            "url": "https://www.metanomics.org/assets/images/metanomics-logo.png"
+          }}
+        }},
+        "mainEntityOfPage": {{
+          "@type": "WebPage",
+          "@id": "https://www.metanomics.org/posts/{slug}.html"
+        }},
+        "inLanguage": "en-US",
+        "isPartOf": {{
+          "@type": "Blog",
+          "@id": "https://www.metanomics.org/blog.html",
+          "name": "Metanomics Blog"
+        }}
+      }},
+      {{
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.metanomics.org/" }},
+          {{ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.metanomics.org/blog.html" }},
+          {{ "@type": "ListItem", "position": 3, "name": "{html.escape(title)}", "item": "https://www.metanomics.org/posts/{slug}.html" }}
+        ]
+      }}
+    ]
   }}
   </script>
   <!-- Google Analytics -->
@@ -450,6 +491,87 @@ def blog_card_html(title, date_str, excerpt, slug, cover_url):
           </div>
         </a>"""
 
+# ── Sitemap generation ───────────────────────────────────────────────────────
+def generate_sitemap(site_root, post_slugs_dates):
+    """Regenerate sitemap.xml with homepage, blog listing, and all posts."""
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    urls = [
+        f"""  <url>
+    <loc>https://www.metanomics.org/</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>""",
+        f"""  <url>
+    <loc>https://www.metanomics.org/blog.html</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>""",
+    ]
+    for slug, date_raw in post_slugs_dates:
+        lastmod = date_raw if date_raw else today
+        urls.append(f"""  <url>
+    <loc>https://www.metanomics.org/posts/{slug}.html</loc>
+    <lastmod>{lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>""")
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    xml += "\n".join(urls) + "\n"
+    xml += "</urlset>\n"
+    sitemap_path = site_root / "sitemap.xml"
+    sitemap_path.write_text(xml, encoding="utf-8")
+    print(f"Regenerated sitemap.xml with {len(post_slugs_dates) + 2} URL(s).")
+
+
+# ── RSS feed generation ──────────────────────────────────────────────────────
+def generate_rss(site_root, posts_data):
+    """Generate feed.xml RSS feed from published posts."""
+    import email.utils
+
+    def rss_date(date_raw):
+        try:
+            dt = datetime.fromisoformat(date_raw.split("T")[0])
+            return email.utils.format_datetime(dt)
+        except Exception:
+            return email.utils.format_datetime(datetime.utcnow())
+
+    now_rfc = email.utils.format_datetime(datetime.utcnow())
+    items = []
+    for p in posts_data:
+        slug, title, excerpt, date_raw = p["slug"], p["title"], p["excerpt"], p["date_raw"]
+        link = f"https://www.metanomics.org/posts/{slug}.html"
+        pub_date = rss_date(date_raw)
+        safe_title = title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        safe_excerpt = excerpt.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        items.append(f"""    <item>
+      <title>{safe_title}</title>
+      <link>{link}</link>
+      <guid isPermaLink="true">{link}</guid>
+      <description>{safe_excerpt}</description>
+      <pubDate>{pub_date}</pubDate>
+    </item>""")
+
+    rss = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Metanomics Blog</title>
+    <link>https://www.metanomics.org/blog.html</link>
+    <description>Reverse Engineering The Economy of Zion — Prophecy meets economics.</description>
+    <language>en-us</language>
+    <lastBuildDate>{now_rfc}</lastBuildDate>
+    <atom:link href="https://www.metanomics.org/feed.xml" rel="self" type="application/rss+xml"/>
+{chr(10).join(items)}
+  </channel>
+</rss>
+"""
+    feed_path = site_root / "feed.xml"
+    feed_path.write_text(rss, encoding="utf-8")
+    print(f"Generated feed.xml with {len(posts_data)} item(s).")
+
+
 # ── Main sync ────────────────────────────────────────────────────────────────
 def main():
     print(f"Fetching posts from Notion database {NOTION_DATABASE_ID}...")
@@ -463,6 +585,8 @@ def main():
     print(f"Found {len(pages)} published post(s).")
 
     cards = []
+    post_slugs_dates = []  # for sitemap
+    posts_data = []        # for RSS
 
     for page in pages:
         props = page.get("properties", {})
@@ -517,6 +641,8 @@ def main():
         print(f"    → Written: posts/{slug}.html")
 
         cards.append(blog_card_html(title, date_str, excerpt, slug, cover_url))
+        post_slugs_dates.append((slug, date_raw))
+        posts_data.append({"slug": slug, "title": title, "excerpt": excerpt, "date_raw": date_raw})
 
     # ── Regenerate blog.html grid ──
     blog_html_path = SITE_ROOT / "blog.html"
@@ -543,6 +669,12 @@ def main():
         print(f"\nUpdated blog.html with {len(cards)} post card(s).")
     else:
         print("\nWARNING: blog.html not found — skipping grid update.")
+
+    # ── Regenerate sitemap.xml ──
+    generate_sitemap(SITE_ROOT, post_slugs_dates)
+
+    # ── Regenerate RSS feed ──
+    generate_rss(SITE_ROOT, posts_data)
 
     print("\nSync complete!")
 

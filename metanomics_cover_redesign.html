@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Metanomics — Redesigned Cover</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; display: flex; justify-content: center; align-items: flex-start; padding: 24px; min-height: 100vh; }
+  svg { display: block; max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<svg width="2000" height="1400" viewBox="0 0 2000 1400"
+     xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+  <!-- Gradients -->
+  <radialGradient id="gFront" cx="50%" cy="38%" r="68%" gradientUnits="objectBoundingBox">
+    <stop offset="0%"  stop-color="#2a88d8"/>
+    <stop offset="42%" stop-color="#0e52a0"/>
+    <stop offset="100%" stop-color="#040c1e"/>
+  </radialGradient>
+
+  <radialGradient id="gBack" cx="38%" cy="48%" r="72%" gradientUnits="objectBoundingBox">
+    <stop offset="0%"  stop-color="#2270b8"/>
+    <stop offset="100%" stop-color="#091e40"/>
+  </radialGradient>
+
+  <radialGradient id="gGoldGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#f5c018" stop-opacity="0.38"/>
+    <stop offset="100%" stop-color="#f5c018" stop-opacity="0"/>
+  </radialGradient>
+
+  <radialGradient id="gBlueGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#50b0ff" stop-opacity="0.55"/>
+    <stop offset="100%" stop-color="#50b0ff" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- Filters -->
+  <filter id="f3" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f6" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fb6">
+    <feGaussianBlur stdDeviation="6"/>
+  </filter>
+  <filter id="fb10">
+    <feGaussianBlur stdDeviation="10"/>
+  </filter>
+  <filter id="fb16">
+    <feGaussianBlur stdDeviation="16"/>
+  </filter>
+
+  <!-- Clip regions -->
+  <clipPath id="cFront">
+    <rect x="1020" y="0" width="980" height="1400"/>
+  </clipPath>
+  <clipPath id="cSpine">
+    <rect x="930" y="0" width="90" height="1400"/>
+  </clipPath>
+  <clipPath id="cBack">
+    <rect x="0" y="0" width="930" height="1400"/>
+  </clipPath>
+
+</defs>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FRONT COVER  (x: 1020–2000)                                   -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cFront)">
+
+  <!-- 1. Dark navy base -->
+  <rect x="1020" y="0" width="980" height="1400" fill="#060c1c"/>
+
+  <!-- 2. Diagonal color blocks — AUL style -->
+  <!-- Upper-left bright blue wedge -->
+  <polygon points="1020,0 2000,0 2000,560 1020,900" fill="#1462a8" opacity="0.82"/>
+  <!-- Right teal accent -->
+  <polygon points="1720,0 2000,0 2000,640" fill="#0b4472" opacity="0.55"/>
+  <!-- Lower-left teal tone -->
+  <polygon points="1020,660 1020,1020 1370,820" fill="#0b3a5e" opacity="0.38"/>
+
+  <!-- 3. Radiating circle rings (AUL swirl effect) — center on figure -->
+  <!-- Outer dim rings -->
+  <g fill="none" stroke="#3a9de0" opacity="0.10">
+    <circle cx="1510" cy="700" r="498" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="480" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="462" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="444" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="426" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="408" stroke-width="1"/>
+  </g>
+  <g fill="none" stroke="#50a8e8" opacity="0.15">
+    <circle cx="1510" cy="700" r="390" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="372" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="354" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="336" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="318" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="300" stroke-width="1"/>
+  </g>
+  <g fill="none" stroke="#62b4f0" opacity="0.22">
+    <circle cx="1510" cy="700" r="282" stroke-width="2"/>
+    <circle cx="1510" cy="700" r="264" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="246" stroke-width="2"/>
+    <circle cx="1510" cy="700" r="228" stroke-width="1"/>
+    <circle cx="1510" cy="700" r="210" stroke-width="2"/>
+  </g>
+  <g fill="none" stroke="#78c2ff" opacity="0.32">
+    <circle cx="1510" cy="700" r="192" stroke-width="2.5"/>
+    <circle cx="1510" cy="700" r="174" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="156" stroke-width="2.5"/>
+    <circle cx="1510" cy="700" r="138" stroke-width="1.5"/>
+    <circle cx="1510" cy="700" r="120" stroke-width="3"/>
+    <circle cx="1510" cy="700" r="102" stroke-width="2"/>
+  </g>
+
+  <!-- Offset swirling ellipses — adds the crinkled-paper feel from AUL -->
+  <ellipse cx="1535" cy="672" rx="370" ry="350" fill="none" stroke="#3888c8" stroke-width="1" opacity="0.10"/>
+  <ellipse cx="1485" cy="728" rx="390" ry="368" fill="none" stroke="#3888c8" stroke-width="1" opacity="0.10"/>
+  <ellipse cx="1548" cy="658" rx="305" ry="288" fill="none" stroke="#4898d4" stroke-width="1" opacity="0.12"/>
+  <ellipse cx="1472" cy="742" rx="325" ry="306" fill="none" stroke="#4898d4" stroke-width="1" opacity="0.12"/>
+  <ellipse cx="1558" cy="644" rx="242" ry="228" fill="none" stroke="#58a8e0" stroke-width="1.5" opacity="0.15"/>
+  <ellipse cx="1462" cy="756" rx="262" ry="246" fill="none" stroke="#58a8e0" stroke-width="1.5" opacity="0.15"/>
+
+  <!-- Glow zones -->
+  <ellipse cx="1510" cy="700" rx="380" ry="440" fill="url(#gBlueGlow)" opacity="0.6"/>
+  <ellipse cx="1510" cy="655" rx="210" ry="240" fill="url(#gGoldGlow)" opacity="0.7"/>
+
+  <!-- 4. LOTUS SILHOUETTE ─────────────────────────────────────────── -->
+  <!--
+      Head center:  (1510, 285), r=72
+      Body spans:   y 355–980
+      Width at knees: x 1155–1865
+  -->
+  <g fill="#070d1b">
+
+    <!-- Head -->
+    <circle cx="1510" cy="285" r="72"/>
+
+    <!-- Neck connector -->
+    <rect x="1480" y="352" width="60" height="25" rx="8"/>
+
+    <!-- Main body — shoulders, torso, crossed legs, arms in one compound path -->
+    <path d="
+      M 1510,372
+      C 1568,375  1638,394  1692,432
+      C 1738,466  1760,516  1756,568
+      C 1752,608  1740,644  1730,678
+      C 1778,692  1832,720  1868,762
+      C 1902,800  1916,848  1906,890
+      C 1896,930  1868,960  1832,978
+      C 1798,995  1755,998  1714,990
+      C 1680,984  1645,970  1616,956
+      C 1592,965  1566,977  1540,984
+      C 1530,987  1520,990  1510,990
+      C 1500,990  1490,987  1480,984
+      C 1454,977  1428,965  1404,956
+      C 1375,970  1340,984  1306,990
+      C 1265,998  1222,995  1188,978
+      C 1152,960  1124,930  1114,890
+      C 1104,848  1118,800  1152,762
+      C 1188,720  1242,692  1290,678
+      C 1280,644  1268,608  1264,568
+      C 1260,516  1282,466  1328,432
+      C 1382,394  1452,375  1510,372
+      Z
+    "/>
+
+    <!-- Left foot visible beyond left knee -->
+    <ellipse cx="1138" cy="958" rx="62" ry="28" transform="rotate(-12,1138,958)"/>
+    <!-- Right foot visible beyond right knee -->
+    <ellipse cx="1882" cy="958" rx="62" ry="28" transform="rotate(12,1882,958)"/>
+
+  </g>
+
+  <!-- 5. SACRED GEOMETRY — Metatron's Cube in gold ─────────────────── -->
+  <!--
+       Center: (1510, 650)
+       Flower-of-life r = 82  → inner petals at distance 82 from center
+       Centers of 6 petals:
+         Top:        (1510, 568)
+         UR:         (1581, 609)
+         LR:         (1581, 691)
+         Bottom:     (1510, 732)
+         LL:         (1439, 691)
+         UL:         (1439, 609)
+  -->
+
+  <!-- Soft golden area glow -->
+  <circle cx="1510" cy="650" r="190" fill="#f5c018" opacity="0.07" filter="url(#fb16)"/>
+
+  <!-- Outer bounding circle -->
+  <circle cx="1510" cy="650" r="178" fill="none" stroke="#f5c018" stroke-width="1.5" opacity="0.45"/>
+
+  <!-- Second inner ring -->
+  <circle cx="1510" cy="650" r="96" fill="none" stroke="#f5c018" stroke-width="1" opacity="0.35"/>
+
+  <!-- Flower of Life — 7 circles (r=82) -->
+  <g fill="none" stroke="#f5c018" stroke-width="1.5" opacity="0.62">
+    <circle cx="1510" cy="650" r="82"/>
+    <circle cx="1510" cy="568" r="82"/>
+    <circle cx="1581" cy="609" r="82"/>
+    <circle cx="1581" cy="691" r="82"/>
+    <circle cx="1510" cy="732" r="82"/>
+    <circle cx="1439" cy="691" r="82"/>
+    <circle cx="1439" cy="609" r="82"/>
+  </g>
+
+  <!-- Second ring of 6 (r=164) — extended Metatron pattern -->
+  <g fill="none" stroke="#f5c018" stroke-width="1" opacity="0.28">
+    <circle cx="1510" cy="486" r="82"/>
+    <circle cx="1652" cy="568" r="82"/>
+    <circle cx="1652" cy="732" r="82"/>
+    <circle cx="1510" cy="814" r="82"/>
+    <circle cx="1368" cy="732" r="82"/>
+    <circle cx="1368" cy="568" r="82"/>
+  </g>
+
+  <!-- Star of David (two triangles through the 6 inner petal centers) -->
+  <polygon points="1510,568 1581,691 1439,691"
+           fill="none" stroke="#f5c018" stroke-width="1.8" opacity="0.58"/>
+  <polygon points="1510,732 1581,609 1439,609"
+           fill="none" stroke="#f5c018" stroke-width="1.8" opacity="0.58"/>
+
+  <!-- All 6 spokes from center -->
+  <g stroke="#f5c018" stroke-width="1.2" opacity="0.42">
+    <line x1="1510" y1="650" x2="1510" y2="568"/>
+    <line x1="1510" y1="650" x2="1581" y2="609"/>
+    <line x1="1510" y1="650" x2="1581" y2="691"/>
+    <line x1="1510" y1="650" x2="1510" y2="732"/>
+    <line x1="1510" y1="650" x2="1439" y2="691"/>
+    <line x1="1510" y1="650" x2="1439" y2="609"/>
+  </g>
+
+  <!-- Cross-connections between petal centers (completes Metatron cube) -->
+  <g stroke="#f5c018" stroke-width="0.9" opacity="0.30">
+    <!-- Outer hexagon -->
+    <line x1="1510" y1="568" x2="1581" y2="609"/>
+    <line x1="1581" y1="609" x2="1581" y2="691"/>
+    <line x1="1581" y1="691" x2="1510" y2="732"/>
+    <line x1="1510" y1="732" x2="1439" y2="691"/>
+    <line x1="1439" y1="691" x2="1439" y2="609"/>
+    <line x1="1439" y1="609" x2="1510" y2="568"/>
+    <!-- Long diagonals -->
+    <line x1="1510" y1="568" x2="1581" y2="691"/>
+    <line x1="1510" y1="568" x2="1439" y2="691"/>
+    <line x1="1581" y1="609" x2="1439" y2="609"/>
+    <line x1="1581" y1="609" x2="1510" y2="732"/>
+    <line x1="1581" y1="609" x2="1439" y2="691"/>
+    <line x1="1581" y1="691" x2="1439" y2="609"/>
+    <line x1="1581" y1="691" x2="1439" y2="691"/>
+    <line x1="1581" y1="691" x2="1510" y2="732"/>
+    <line x1="1510" y1="732" x2="1439" y2="609"/>
+  </g>
+
+  <!-- Glowing nodes at each petal center — like AUL's chakra stars -->
+  <!-- Blurred halos -->
+  <g filter="url(#fb6)" opacity="0.55">
+    <circle cx="1510" cy="650" r="18" fill="#f8d040"/>
+    <circle cx="1510" cy="568" r="13" fill="#f8d040"/>
+    <circle cx="1581" cy="609" r="13" fill="#f8d040"/>
+    <circle cx="1581" cy="691" r="13" fill="#f8d040"/>
+    <circle cx="1510" cy="732" r="13" fill="#f8d040"/>
+    <circle cx="1439" cy="691" r="13" fill="#f8d040"/>
+    <circle cx="1439" cy="609" r="13" fill="#f8d040"/>
+  </g>
+  <!-- Solid bright dots -->
+  <circle cx="1510" cy="650" r="9"  fill="#ffe050"/>
+  <circle cx="1510" cy="568" r="7"  fill="#ffe050"/>
+  <circle cx="1581" cy="609" r="7"  fill="#ffe050"/>
+  <circle cx="1581" cy="691" r="7"  fill="#ffe050"/>
+  <circle cx="1510" cy="732" r="7"  fill="#ffe050"/>
+  <circle cx="1439" cy="691" r="7"  fill="#ffe050"/>
+  <circle cx="1439" cy="609" r="7"  fill="#ffe050"/>
+
+  <!-- Supply / Demand axes — subtle decorative nod to original -->
+  <!-- Small axes in lower-right corner of front cover -->
+  <g opacity="0.30" stroke="white" fill="none">
+    <!-- P axis vertical -->
+    <line x1="1100" y1="1255" x2="1100" y2="1340" stroke-width="1.5"/>
+    <!-- Q axis horizontal -->
+    <line x1="1100" y1="1340" x2="1930" y2="1340" stroke-width="1.5"/>
+    <!-- Demand curve -->
+    <line x1="1130" y1="1265" x2="1900" y2="1330" stroke-width="1.5"/>
+    <!-- Supply curve -->
+    <line x1="1130" y1="1330" x2="1900" y2="1265" stroke-width="1.5"/>
+  </g>
+  <text x="1085" y="1270" font-family="Impact,sans-serif" font-size="36" fill="white" opacity="0.28">D</text>
+  <text x="1905" y="1270" font-family="Impact,sans-serif" font-size="36" fill="white" opacity="0.28">S</text>
+  <text x="1052" y="1308" font-family="Impact,sans-serif" font-size="32" fill="white" opacity="0.22">P</text>
+  <text x="1900" y="1365" font-family="Impact,sans-serif" font-size="32" fill="white" opacity="0.22">Q</text>
+
+  <!-- 6. MOUNTAINS at bottom ───────────────────────────────────────── -->
+  <!-- Dark back layer -->
+  <path d="
+    M 1020,1400 L 1020,1045
+    C 1065,1022 1108,1008 1155,1014
+    C 1202,1020 1242,1042 1275,1030
+    C 1308,1018 1338,990  1382,980
+    C 1424,970  1460,982  1488,997
+    C 1505,1006 1516,1011 1528,1002
+    C 1546,990  1568,968  1608,958
+    C 1645,949  1682,958  1720,977
+    C 1756,994  1782,1022 1820,1035
+    C 1858,1048 1898,1041 1938,1022
+    C 1965,1008 1985,990  2000,982
+    L 2000,1400 Z
+  " fill="#122e40"/>
+
+  <!-- Mid layer, lighter teal -->
+  <path d="
+    M 1020,1400 L 1020,1128
+    C 1068,1115 1112,1104 1155,1115
+    C 1198,1126 1225,1148 1258,1130
+    C 1291,1112 1322,1078 1362,1068
+    C 1394,1060 1424,1068 1448,1081
+    C 1465,1090 1476,1098 1490,1090
+    C 1505,1081 1522,1064 1542,1058
+    C 1562,1052 1584,1058 1606,1066
+    C 1632,1078 1652,1096 1684,1086
+    C 1716,1076 1748,1050 1790,1040
+    C 1832,1030 1876,1045 1912,1060
+    C 1948,1075 1978,1092 2000,1072
+    L 2000,1400 Z
+  " fill="#1b5265"/>
+
+  <!-- 7. TYPOGRAPHY ────────────────────────────────────────────────── -->
+
+  <!-- METANOMICS — massive bold white title (Impact = AUL style) -->
+  <text x="1510" y="134"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="162"
+        font-weight="900"
+        fill="white"
+        letter-spacing="-4"
+        filter="url(#f3)">METANOMICS</text>
+
+  <!-- Gold rule lines under title — matches AUL's underline treatment -->
+  <rect x="1082" y="148" width="856" height="4"  fill="#f5c018" opacity="0.85"/>
+  <rect x="1082" y="156" width="856" height="2"  fill="#f5c018" opacity="0.50"/>
+
+  <!-- Subtitle -->
+  <text x="1510" y="198"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="36"
+        fill="#f5c018"
+        letter-spacing="2">REVERSE ENGINEERING THE ECONOMY OF ZION</text>
+
+  <!-- Author name at bottom -->
+  <text x="1510" y="1368"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="86"
+        font-weight="900"
+        fill="#f5c018"
+        letter-spacing="3"
+        filter="url(#f3)">TREVOR JARED SPENCER</text>
+
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  SPINE  (x: 930–1020)                                          -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cSpine)">
+  <rect x="930" y="0" width="90" height="1400" fill="#050c1c"/>
+  <!-- Slight blue tint -->
+  <rect x="930" y="0" width="90" height="1400" fill="#1055a0" opacity="0.40"/>
+
+  <!-- Gold edge lines -->
+  <line x1="933"  y1="0" x2="933"  y2="1400" stroke="#f5c018" stroke-width="2" opacity="0.55"/>
+  <line x1="1017" y1="0" x2="1017" y2="1400" stroke="#f5c018" stroke-width="2" opacity="0.55"/>
+
+  <!-- Spine title -->
+  <text transform="translate(975,720) rotate(-90)"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="29"
+        fill="#f5c018"
+        letter-spacing="5">METANOMICS</text>
+
+  <!-- Spine author -->
+  <text transform="translate(975,345) rotate(-90)"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="19"
+        fill="white"
+        letter-spacing="3">TREVOR JARED SPENCER</text>
+</g>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  BACK COVER  (x: 0–930)                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cBack)">
+
+  <!-- Background -->
+  <rect x="0" y="0" width="930" height="1400" fill="url(#gBack)"/>
+
+  <!-- Subtle color block echo — top-right lighter wedge -->
+  <polygon points="540,0 930,0 930,580" fill="#2272bc" opacity="0.28"/>
+
+  <!-- Faint radiating decorative circles on back -->
+  <g fill="none" stroke="white" opacity="0.06">
+    <circle cx="465" cy="640" r="430"/>
+    <circle cx="465" cy="640" r="390"/>
+    <circle cx="465" cy="640" r="350"/>
+    <circle cx="465" cy="640" r="310"/>
+    <circle cx="465" cy="640" r="270"/>
+    <circle cx="465" cy="640" r="230"/>
+    <circle cx="465" cy="640" r="190"/>
+    <circle cx="465" cy="640" r="150"/>
+  </g>
+
+  <!-- Back mountains — dark layer -->
+  <path d="
+    M 0,1400 L 0,1045
+    C 45,1022 88,1008 135,1014
+    C 182,1020 222,1042 255,1030
+    C 288,1018 318,990  362,980
+    C 404,970  440,982  468,997
+    C 485,1006 496,1011 508,1002
+    C 526,990  548,968  588,958
+    C 625,949  662,958  700,977
+    C 736,994  762,1022 800,1035
+    C 838,1048 875,1041 915,1022
+    C 924,1017 928,1012 930,1008
+    L 930,1400 Z
+  " fill="#122e40"/>
+
+  <!-- Back mountains — teal layer -->
+  <path d="
+    M 0,1400 L 0,1128
+    C 48,1115 88,1104 130,1115
+    C 172,1126 198,1148 230,1130
+    C 262,1112 292,1078 332,1068
+    C 364,1060 394,1068 418,1081
+    C 435,1090 446,1098 460,1090
+    C 475,1081 490,1064 510,1058
+    C 530,1052 550,1058 570,1066
+    C 596,1078 616,1096 648,1086
+    C 680,1076 712,1050 752,1040
+    C 792,1030 836,1045 872,1060
+    C 908,1075 924,1088 930,1078
+    L 930,1400 Z
+  " fill="#1b5265"/>
+
+  <!-- Back cover body text — line by line SVG text -->
+  <!-- Para 1: large intro (white, slightly italic feel) -->
+  <text x="465" y="82" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="28" fill="white" opacity="0.95">Metanomics is an inspired examination of the restoration of the</text>
+  <text x="465" y="114" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="28" fill="white" opacity="0.95">biblically prophesied New Jerusalem from an economic perspective.</text>
+
+  <!-- Divider -->
+  <rect x="60" y="126" width="810" height="2" fill="#f5c018" opacity="0.45"/>
+
+  <!-- Para 2 — gold, smaller -->
+  <text x="465" y="162" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">The Lord has returned to His earthly tabernacle, together with Enoch</text>
+  <text x="465" y="190" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">and the hosts of the heavenly city. They now direct this sacred work</text>
+  <text x="465" y="218" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">to outwardly manifest the Kingdom of God on the earth in our day.</text>
+  <text x="465" y="246" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">The Millennium has begun, and humanity is progressing from the</text>
+  <text x="465" y="274" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">terrestrial toward the celestial during this Messianic Age.</text>
+
+  <!-- Para 3 — gold -->
+  <text x="465" y="322" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">A central requirement of this new era is the restoration of the economy</text>
+  <text x="465" y="350" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">of Zion, founded on the scriptural principles clearly outlined in this book.</text>
+
+  <!-- Para 4 — white -->
+  <text x="465" y="398" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">Through ancient prophecy, scripture, and modern revelation, the author</text>
+  <text x="465" y="426" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">illuminates the precise economic principles the Lord has given us to</text>
+  <text x="465" y="454" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">implement.</text>
+
+  <!-- Para 5 — white -->
+  <text x="465" y="500" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">This work is designed to bring readers to a deeper understanding of</text>
+  <text x="465" y="528" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">these truths and to awaken in them a knowledge of their divine call</text>
+  <text x="465" y="556" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">to participate in bringing the fullness of God's kingdom to the earth.</text>
+
+  <!-- Para 6 — gold, emphasis -->
+  <text x="465" y="602" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">We all have a vital role to magnify these principles within ourselves,</text>
+  <text x="465" y="630" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="#f5c018">our families, communities and our nations—both spiritually and temporally.</text>
+
+  <!-- Final line — white bold -->
+  <text x="465" y="676" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="26" fill="white">Metanomics exists to equip and empower you for this essential work.</text>
+
+  <!-- Divider before author block -->
+  <rect x="60" y="694" width="810" height="2" fill="#f5c018" opacity="0.45"/>
+
+  <!-- Author photo placeholder -->
+  <rect x="62" y="1158" width="130" height="162" rx="5"
+        fill="#091828" stroke="#f5c018" stroke-width="2"/>
+  <text x="127" y="1248" text-anchor="middle"
+        font-family="Impact,sans-serif" font-size="15"
+        fill="#f5c018" opacity="0.6">PHOTO</text>
+
+  <!-- Publisher block -->
+  <text x="220" y="1200"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="46" fill="#f5c018">ELEMENT</text>
+  <text x="220" y="1242"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="26" fill="white" letter-spacing="8">PUBLISHING</text>
+
+  <!-- Publisher logo circle -->
+  <circle cx="395" cy="1290" r="32" fill="#091828" stroke="#f5c018" stroke-width="2"/>
+  <text x="395" y="1298" text-anchor="middle"
+        font-family="Impact,sans-serif" font-size="26" fill="#f5c018">E</text>
+
+  <!-- Barcode area -->
+  <rect x="710" y="1155" width="182" height="132" rx="4" fill="white"/>
+  <!-- Barcode bars -->
+  <g stroke="#111" fill="none">
+    <line x1="724" y1="1165" x2="724" y2="1222" stroke-width="2"/>
+    <line x1="729" y1="1165" x2="729" y2="1222" stroke-width="1"/>
+    <line x1="733" y1="1165" x2="733" y2="1222" stroke-width="3"/>
+    <line x1="738" y1="1165" x2="738" y2="1222" stroke-width="1"/>
+    <line x1="742" y1="1165" x2="742" y2="1222" stroke-width="2"/>
+    <line x1="747" y1="1165" x2="747" y2="1222" stroke-width="1"/>
+    <line x1="751" y1="1165" x2="751" y2="1222" stroke-width="3"/>
+    <line x1="756" y1="1165" x2="756" y2="1222" stroke-width="1"/>
+    <line x1="760" y1="1165" x2="760" y2="1222" stroke-width="2"/>
+    <line x1="765" y1="1165" x2="765" y2="1222" stroke-width="1"/>
+    <line x1="769" y1="1165" x2="769" y2="1222" stroke-width="3"/>
+    <line x1="774" y1="1165" x2="774" y2="1222" stroke-width="2"/>
+    <line x1="779" y1="1165" x2="779" y2="1222" stroke-width="1"/>
+    <line x1="783" y1="1165" x2="783" y2="1222" stroke-width="3"/>
+    <line x1="788" y1="1165" x2="788" y2="1222" stroke-width="1"/>
+    <line x1="792" y1="1165" x2="792" y2="1222" stroke-width="2"/>
+    <line x1="797" y1="1165" x2="797" y2="1222" stroke-width="1"/>
+    <line x1="801" y1="1165" x2="801" y2="1222" stroke-width="3"/>
+    <line x1="806" y1="1165" x2="806" y2="1222" stroke-width="1"/>
+    <line x1="810" y1="1165" x2="810" y2="1222" stroke-width="2"/>
+    <line x1="815" y1="1165" x2="815" y2="1222" stroke-width="1"/>
+    <line x1="820" y1="1165" x2="820" y2="1222" stroke-width="3"/>
+    <line x1="824" y1="1165" x2="824" y2="1222" stroke-width="1"/>
+    <line x1="829" y1="1165" x2="829" y2="1222" stroke-width="2"/>
+    <line x1="833" y1="1165" x2="833" y2="1222" stroke-width="1"/>
+    <line x1="838" y1="1165" x2="838" y2="1222" stroke-width="3"/>
+    <line x1="843" y1="1165" x2="843" y2="1222" stroke-width="1"/>
+    <line x1="847" y1="1165" x2="847" y2="1222" stroke-width="2"/>
+    <line x1="852" y1="1165" x2="852" y2="1222" stroke-width="1"/>
+    <line x1="856" y1="1165" x2="856" y2="1222" stroke-width="3"/>
+    <line x1="861" y1="1165" x2="861" y2="1222" stroke-width="2"/>
+    <line x1="866" y1="1165" x2="866" y2="1222" stroke-width="1"/>
+    <line x1="870" y1="1165" x2="870" y2="1222" stroke-width="2"/>
+    <line x1="875" y1="1165" x2="875" y2="1222" stroke-width="1"/>
+    <line x1="879" y1="1165" x2="879" y2="1222" stroke-width="3"/>
+    <line x1="884" y1="1165" x2="884" y2="1222" stroke-width="1"/>
+  </g>
+  <text x="801" y="1238" text-anchor="middle"
+        font-family="Arial,sans-serif" font-size="11" fill="#222">978-0-000-00000-0</text>
+
+</g>
+
+
+<!-- Section dividers -->
+<line x1="930"  y1="0" x2="930"  y2="1400" stroke="#f5c018" stroke-width="1" opacity="0.35"/>
+<line x1="1020" y1="0" x2="1020" y2="1400" stroke="#f5c018" stroke-width="1" opacity="0.35"/>
+
+</svg>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Metanomics — Cover v2 (AUL Template)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #222; display: flex; justify-content: center; padding: 24px; }
+  svg { display: block; max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+<svg width="2000" height="1400" viewBox="0 0 2000 1400"
+     xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+  <!-- ── FRONT: left color block (bright Metanomics blue) ── -->
+  <linearGradient id="gLeftBlock" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#1462a8"/>
+    <stop offset="100%" stop-color="#1870b8"/>
+  </linearGradient>
+
+  <!-- ── FRONT: right color block (Metanomics teal) ── -->
+  <linearGradient id="gRightBlock" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#1a6a80"/>
+    <stop offset="100%" stop-color="#135e70"/>
+  </linearGradient>
+
+  <!-- ── FRONT: central spotlight beam ── -->
+  <radialGradient id="gBeam" cx="50%" cy="42%" r="32%" gradientUnits="objectBoundingBox"
+                  fx="50%" fy="38%">
+    <stop offset="0%"   stop-color="#d8eeff" stop-opacity="0.92"/>
+    <stop offset="25%"  stop-color="#9ac4e8" stop-opacity="0.68"/>
+    <stop offset="60%"  stop-color="#4890c8" stop-opacity="0.28"/>
+    <stop offset="100%" stop-color="#1462a8" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- ── FRONT: glow behind figure ── -->
+  <radialGradient id="gFigureGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#a8d4f8" stop-opacity="0.50"/>
+    <stop offset="100%" stop-color="#a8d4f8" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- ── Gold node glow ── -->
+  <radialGradient id="gNodeGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"   stop-color="#f8d030" stop-opacity="0.80"/>
+    <stop offset="100%" stop-color="#f8d030" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- ── BACK: background ── -->
+  <linearGradient id="gBack" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#0e4888"/>
+    <stop offset="100%" stop-color="#1660a0"/>
+  </linearGradient>
+
+  <!-- Filters -->
+  <filter id="fBlur4">  <feGaussianBlur stdDeviation="4"/>  </filter>
+  <filter id="fBlur8">  <feGaussianBlur stdDeviation="8"/>  </filter>
+  <filter id="fBlur14"> <feGaussianBlur stdDeviation="14"/> </filter>
+  <filter id="fGlow3" x="-25%" y="-25%" width="150%" height="150%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fGlow5" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <!-- Clip regions -->
+  <clipPath id="cFront"> <rect x="1020" y="0" width="980" height="1400"/> </clipPath>
+  <clipPath id="cSpine">  <rect x="930"  y="0" width="90"  height="1400"/> </clipPath>
+  <clipPath id="cBack">   <rect x="0"    y="0" width="930" height="1400"/> </clipPath>
+
+</defs>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!--  FRONT COVER  — AUL template, Metanomics content + colors        -->
+<!--  x: 1020–2000  (center = 1510)                                   -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cFront)">
+
+  <!-- 1 ── DARK BASE -->
+  <rect x="1020" y="0" width="980" height="1400" fill="#07111e"/>
+
+  <!-- 2 ── DIAGONAL COLOR BLOCKS (same geometry as AUL) -->
+  <!-- Left block: bright Metanomics blue  (AUL = cool blue-gray) -->
+  <polygon points="1020,0 1620,0 1020,1400" fill="url(#gLeftBlock)"/>
+  <!-- Right block: Metanomics teal  (AUL = red-orange) -->
+  <polygon points="1620,0 2000,0 2000,1400 1020,1400" fill="url(#gRightBlock)"/>
+
+  <!-- 3 ── SWIRLING RIPPLE TEXTURE (AUL's concentric water-ring look) -->
+  <!-- Many concentric circles at slightly varying centers to create the
+       crinkled-paper / water-ring effect that defines AUL's background -->
+
+  <!-- Outer dim band -->
+  <g fill="none" opacity="0.10" stroke="#88c0e8">
+    <circle cx="1510" cy="680" r="500" stroke-width="1.5"/>
+    <circle cx="1515" cy="675" r="482" stroke-width="1"/>
+    <circle cx="1506" cy="685" r="464" stroke-width="1.5"/>
+    <circle cx="1513" cy="672" r="446" stroke-width="1"/>
+    <circle cx="1508" cy="688" r="428" stroke-width="1.5"/>
+    <circle cx="1512" cy="670" r="410" stroke-width="1"/>
+  </g>
+  <g fill="none" opacity="0.14" stroke="#98c8f0">
+    <circle cx="1510" cy="680" r="392" stroke-width="1.5"/>
+    <circle cx="1516" cy="674" r="374" stroke-width="1"/>
+    <circle cx="1505" cy="686" r="356" stroke-width="1.5"/>
+    <circle cx="1514" cy="671" r="338" stroke-width="1"/>
+    <circle cx="1508" cy="689" r="320" stroke-width="1.5"/>
+    <circle cx="1512" cy="669" r="302" stroke-width="1"/>
+  </g>
+  <g fill="none" opacity="0.20" stroke="#b0d4f8">
+    <circle cx="1510" cy="680" r="284" stroke-width="2"/>
+    <circle cx="1517" cy="673" r="266" stroke-width="1"/>
+    <circle cx="1504" cy="687" r="248" stroke-width="2"/>
+    <circle cx="1515" cy="670" r="230" stroke-width="1"/>
+    <circle cx="1507" cy="690" r="212" stroke-width="2"/>
+    <circle cx="1513" cy="668" r="194" stroke-width="1"/>
+  </g>
+  <g fill="none" opacity="0.28" stroke="#c0dcff">
+    <circle cx="1510" cy="680" r="176" stroke-width="2.5"/>
+    <circle cx="1518" cy="672" r="158" stroke-width="1.5"/>
+    <circle cx="1503" cy="688" r="140" stroke-width="2.5"/>
+    <circle cx="1516" cy="669" r="122" stroke-width="1.5"/>
+    <circle cx="1506" cy="691" r="104" stroke-width="3"/>
+  </g>
+  <!-- Slight ellipse offsets to break up perfect symmetry like AUL -->
+  <ellipse cx="1528" cy="662" rx="368" ry="355" fill="none" stroke="#90bce0" stroke-width="1" opacity="0.10"/>
+  <ellipse cx="1492" cy="698" rx="388" ry="373" fill="none" stroke="#90bce0" stroke-width="1" opacity="0.10"/>
+  <ellipse cx="1540" cy="648" rx="295" ry="282" fill="none" stroke="#a0c8e8" stroke-width="1" opacity="0.12"/>
+  <ellipse cx="1480" cy="712" rx="315" ry="300" fill="none" stroke="#a0c8e8" stroke-width="1" opacity="0.12"/>
+  <ellipse cx="1550" cy="636" rx="226" ry="214" fill="none" stroke="#b0d0f0" stroke-width="1.5" opacity="0.16"/>
+  <ellipse cx="1470" cy="724" rx="246" ry="232" fill="none" stroke="#b0d0f0" stroke-width="1.5" opacity="0.16"/>
+
+  <!-- 4 ── CENTRAL SPOTLIGHT BEAM (the signature AUL V-beam / theatrical light) -->
+  <rect x="1020" y="0" width="980" height="1400" fill="url(#gBeam)"/>
+
+  <!-- Soft vertical column to reinforce the beam -->
+  <ellipse cx="1510" cy="600" rx="200" ry="680" fill="#c8e4ff" opacity="0.10"/>
+
+  <!-- 5 ── FIGURE GLOW (warm light behind where the silhouette stands) -->
+  <ellipse cx="1510" cy="750" rx="320" ry="420" fill="url(#gFigureGlow)"/>
+
+  <!-- 6 ── MEDITATING SILHOUETTE ────────────────────────────────────
+       Same pose and scale as AUL — large, dominant, lower half of cover.
+       Figure spans roughly y=320–1060 (740px tall), centered at x=1510.
+       Path traces: neck → right shoulder → right arm → right knee →
+       across bottom → left knee → left arm → left shoulder → back to neck.
+  ─────────────────────────────────────────────────────────────────── -->
+  <g fill="#080f1e">
+
+    <!-- Head -->
+    <circle cx="1510" cy="340" r="74"/>
+
+    <!-- Neck -->
+    <rect x="1482" y="408" width="56" height="28" rx="10"/>
+
+    <!-- Body: shoulders, torso, arms, crossed legs — one outer path -->
+    <path d="
+      M 1510,430
+      C 1572,434  1648,455  1706,496
+      C 1752,530  1774,582  1770,636
+      C 1766,678  1752,716  1740,752
+
+      C 1792,768  1852,800  1890,846
+      C 1926,890  1938,940  1926,984
+      C 1914,1026 1884,1056 1846,1072
+      C 1810,1088 1764,1090 1722,1082
+      C 1686,1074 1648,1058 1618,1042
+
+      C 1592,1054 1564,1068 1536,1076
+      C 1527,1079 1518,1082 1510,1082
+      C 1502,1082 1493,1079 1484,1076
+      C 1456,1068 1428,1054 1402,1042
+
+      C 1372,1058 1334,1074 1298,1082
+      C 1256,1090 1210,1088 1174,1072
+      C 1136,1056 1106,1026 1094,984
+      C 1082,940  1094,890  1130,846
+      C 1168,800  1228,768  1280,752
+
+      C 1268,716  1254,678  1250,636
+      C 1246,582  1268,530  1314,496
+      C 1372,455  1448,434  1510,430
+      Z
+    "/>
+
+    <!-- Left foot — peeking beyond left knee -->
+    <ellipse cx="1068" cy="1040" rx="64" ry="30" transform="rotate(-14,1068,1040)"/>
+    <!-- Right foot — peeking beyond right knee -->
+    <ellipse cx="1952" cy="1040" rx="64" ry="30" transform="rotate(14,1952,1040)"/>
+
+  </g>
+
+  <!-- 7 ── METATRON'S CUBE NODES along figure spine ──────────────────
+       AUL uses 7 gold 5-pointed stars (chakra points) running up the
+       figure's spine. Here we use 7 gold 6-pointed hexagrams (Star of
+       David / Metatron geometry) — same number, same positions, fitting
+       Metanomics' sacred geometry theme.
+
+       Spine x=1510, nodes at y: 460, 548, 636, 724, 812, 900, 978
+       (crown at top, root at base of torso before legs)
+
+       Hexagram path for outer r=16, inner r=8 centered at (cx,cy):
+       M cx,cy-16  L cx+4,cy-7  L cx+14,cy-8  L cx+8,cy
+       L cx+14,cy+8  L cx+4,cy+7  L cx,cy+16
+       L cx-4,cy+7  L cx-14,cy+8  L cx-8,cy
+       L cx-14,cy-8  L cx-4,cy-7  Z
+  ─────────────────────────────────────────────────────────────────── -->
+
+  <!-- Blurred halos behind each node -->
+  <g filter="url(#fBlur8)" opacity="0.65">
+    <circle cx="1510" cy="460"  r="22" fill="#f8d030"/>
+    <circle cx="1510" cy="548"  r="20" fill="#f8d030"/>
+    <circle cx="1510" cy="636"  r="24" fill="#f8d030"/>
+    <circle cx="1510" cy="724"  r="20" fill="#f8d030"/>
+    <circle cx="1510" cy="812"  r="20" fill="#f8d030"/>
+    <circle cx="1510" cy="900"  r="20" fill="#f8d030"/>
+    <circle cx="1510" cy="978"  r="22" fill="#f8d030"/>
+  </g>
+
+  <!-- Node 1 — Crown (top) r=18 -->
+  <path d="M1510,442 L1514,453 L1526,454 L1518,462 L1520,474 L1510,468 L1500,474 L1502,462 L1494,454 L1506,453 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+  <!-- Hexagram node 1 (cx=1510,cy=460,r=16) -->
+  <path d="M1510,444 L1514,453 L1524,452 L1518,460 L1524,468 L1514,467 L1510,476 L1506,467 L1496,468 L1502,460 L1496,452 L1506,453 Z"
+        fill="#ffe040"/>
+
+  <!-- Node 2 (cy=548) -->
+  <path d="M1510,532 L1514,541 L1524,540 L1518,548 L1524,556 L1514,555 L1510,564 L1506,555 L1496,556 L1502,548 L1496,540 L1506,541 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+
+  <!-- Node 3 — Heart center, slightly larger (cy=636) r=18 -->
+  <path d="M1510,618 L1515,629 L1527,628 L1520,637 L1527,646 L1515,645 L1510,656 L1505,645 L1493,646 L1500,637 L1493,628 L1505,629 Z"
+        fill="#ffe040" filter="url(#fGlow5)"/>
+
+  <!-- Node 4 (cy=724) -->
+  <path d="M1510,708 L1514,717 L1524,716 L1518,724 L1524,732 L1514,731 L1510,740 L1506,731 L1496,732 L1502,724 L1496,716 L1506,717 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+
+  <!-- Node 5 (cy=812) -->
+  <path d="M1510,796 L1514,805 L1524,804 L1518,812 L1524,820 L1514,819 L1510,828 L1506,819 L1496,820 L1502,812 L1496,804 L1506,805 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+
+  <!-- Node 6 (cy=900) -->
+  <path d="M1510,884 L1514,893 L1524,892 L1518,900 L1524,908 L1514,907 L1510,916 L1506,907 L1496,908 L1502,900 L1496,892 L1506,893 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+
+  <!-- Node 7 — Root (cy=978) -->
+  <path d="M1510,962 L1514,971 L1524,970 L1518,978 L1524,986 L1514,985 L1510,994 L1506,985 L1496,986 L1502,978 L1496,970 L1506,971 Z"
+        fill="#ffe040" filter="url(#fGlow3)"/>
+
+  <!-- 8 ── SUPPLY / DEMAND GRAPH ────────────────────────────────────
+       In AUL the cover element equivalent (illustration) is the silhouette.
+       The D/S graph is Metanomics' signature mark — place it small but
+       visible in the lower-right, like the back of a coin.
+       Keeping the original D, S, P, Q labels + crossing lines.
+  ─────────────────────────────────────────────────────────────────── -->
+  <g opacity="0.42">
+    <!-- Axes -->
+    <line x1="1108" y1="1220" x2="1108" y2="1330" stroke="white" stroke-width="1.5"/>
+    <line x1="1108" y1="1330" x2="1920" y2="1330" stroke="white" stroke-width="1.5"/>
+    <!-- D line (demand, slopes down left-to-right) -->
+    <line x1="1140" y1="1230" x2="1890" y2="1318" stroke="white" stroke-width="1.5"/>
+    <!-- S line (supply, slopes up) -->
+    <line x1="1140" y1="1318" x2="1890" y2="1230" stroke="white" stroke-width="1.5"/>
+    <!-- Labels -->
+    <text x="1090" y="1238" font-family="Impact,sans-serif" font-size="38" fill="white">D</text>
+    <text x="1890" y="1238" font-family="Impact,sans-serif" font-size="38" fill="white">S</text>
+    <text x="1060" y="1290" font-family="Impact,sans-serif" font-size="34" fill="white">P</text>
+    <text x="1900" y="1352" font-family="Impact,sans-serif" font-size="34" fill="white">Q</text>
+  </g>
+
+  <!-- 9 ── MOUNTAINS at bottom (Metanomics signature element) ───────
+       Same dark-teal mountain silhouette from original Metanomics cover.
+       AUL also has dark ground/base blending into the figure bottom.
+  ─────────────────────────────────────────────────────────────────── -->
+  <!-- Back mountain range — dark layer -->
+  <path d="
+    M 1020,1400 L 1020,1065
+    C 1068,1040 1112,1022 1162,1030
+    C 1212,1038 1252,1062 1286,1048
+    C 1320,1034 1352,1002 1398,990
+    C 1442,978  1480,992  1508,1008
+    C 1525,1017 1538,1024 1552,1014
+    C 1572,1000 1596,974  1638,962
+    C 1678,951  1718,962  1758,982
+    C 1796,1000 1824,1030 1864,1044
+    C 1904,1058 1946,1050 1982,1030
+    C 1993,1024 1998,1018 2000,1014
+    L 2000,1400 Z
+  " fill="#0f2a38"/>
+
+  <!-- Front mountain range — teal layer -->
+  <path d="
+    M 1020,1400 L 1020,1148
+    C 1072,1132 1118,1120 1162,1132
+    C 1206,1144 1234,1168 1268,1148
+    C 1302,1128 1334,1092 1376,1080
+    C 1410,1070 1442,1080 1468,1095
+    C 1486,1105 1498,1114 1514,1105
+    C 1530,1096 1548,1078 1570,1070
+    C 1592,1062 1616,1070 1640,1079
+    C 1668,1091 1690,1112 1724,1100
+    C 1758,1088 1792,1060 1836,1048
+    C 1878,1036 1924,1052 1962,1068
+    C 1978,1075 1992,1084 2000,1076
+    L 2000,1400 Z
+  " fill="#1a5062"/>
+
+  <!-- 10 ── METANOMICS SYMBOL (top-right corner — AUL has infinity there) -->
+  <!--
+       AUL places its infinity ∞ symbol as a white icon top-right.
+       We use a simplified Metatron's cube hexagram mark in white.
+  -->
+  <g transform="translate(1880, 72)" opacity="0.92">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="48" fill="none" stroke="white" stroke-width="3"/>
+    <!-- Inner hexagram (Star of David) -->
+    <polygon points="0,-32 27.7,16 -27.7,16" fill="none" stroke="white" stroke-width="2.5"/>
+    <polygon points="0,32 27.7,-16 -27.7,-16" fill="none" stroke="white" stroke-width="2.5"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="5" fill="white"/>
+  </g>
+
+  <!-- 11 ── TYPOGRAPHY ──────────────────────────────────────────────
+       AUL layout:
+         • Title — top of cover, huge Impact, full width
+         • Subtitle — two lines immediately below, smaller Impact
+         • (illustration takes center)
+         • Author — bottom, large Impact gold
+  ─────────────────────────────────────────────────────────────────── -->
+
+  <!-- METANOMICS — massive white title, same dominant scale as AUL -->
+  <text x="1510" y="126"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="172"
+        fill="white"
+        letter-spacing="-4"
+        filter="url(#fGlow3)">METANOMICS</text>
+
+  <!-- Gold rule lines (AUL has them between title and subtitle) -->
+  <rect x="1068" y="140" width="884" height="5"  fill="#f5c018" opacity="0.90"/>
+  <rect x="1068" y="149" width="884" height="2.5" fill="#f5c018" opacity="0.55"/>
+
+  <!-- Subtitle line 1 -->
+  <text x="1510" y="188"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="34"
+        fill="#f5c018"
+        letter-spacing="2">HOW THE CONSTITUTION,</text>
+
+  <!-- Subtitle line 2 — AUL wraps subtitle across two lines -->
+  <text x="1510" y="224"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="34"
+        fill="#f5c018"
+        letter-spacing="2">SERMON ON THE MOUNT &amp; TIME SPACE CONTINUUM</text>
+
+  <!-- Subtitle line 3 -->
+  <text x="1510" y="260"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="34"
+        fill="#f5c018"
+        letter-spacing="2">CAN LEAD THIS GENERATION TO THE 8TH SEAL</text>
+
+  <!-- Author — large gold Impact at bottom, identical to AUL treatment -->
+  <text x="1510" y="1374"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="92"
+        fill="#f5c018"
+        letter-spacing="4"
+        filter="url(#fGlow3)">TREVOR JARED SPENCER</text>
+
+</g>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!--  SPINE  (x: 930–1020)                                            -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cSpine)">
+  <rect x="930" y="0" width="90" height="1400" fill="#091828"/>
+  <rect x="930" y="0" width="90" height="1400" fill="#1060a0" opacity="0.45"/>
+
+  <!-- Gold edge rules — AUL style spine borders -->
+  <line x1="933"  y1="0" x2="933"  y2="1400" stroke="#f5c018" stroke-width="2.5" opacity="0.60"/>
+  <line x1="1017" y1="0" x2="1017" y2="1400" stroke="#f5c018" stroke-width="2.5" opacity="0.60"/>
+
+  <!-- Spine: title vertical -->
+  <text transform="translate(975,730) rotate(-90)"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="30"
+        fill="#f5c018"
+        letter-spacing="5">METANOMICS</text>
+
+  <!-- Spine: author vertical -->
+  <text transform="translate(975,355) rotate(-90)"
+        text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="19"
+        fill="white"
+        letter-spacing="3">TREVOR JARED SPENCER</text>
+</g>
+
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!--  BACK COVER  (x: 0–930)                                          -->
+<!--  AUL back = same left-panel blue, author photo top-left,          -->
+<!--  description text, publisher logo bottom-left, barcode bottom-right -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<g clip-path="url(#cBack)">
+
+  <!-- Background — same blue as the left block on front (AUL mirrors this) -->
+  <rect x="0" y="0" width="930" height="1400" fill="url(#gBack)"/>
+
+  <!-- Subtle swirl texture echo on back (lighter than front) -->
+  <g fill="none" stroke="white" opacity="0.05">
+    <circle cx="465" cy="620" r="420"/>
+    <circle cx="468" cy="617" r="390"/>
+    <circle cx="463" cy="624" r="360"/>
+    <circle cx="467" cy="615" r="330"/>
+    <circle cx="464" cy="626" r="300"/>
+    <circle cx="466" cy="613" r="270"/>
+    <circle cx="465" cy="628" r="240"/>
+    <circle cx="468" cy="611" r="210"/>
+    <circle cx="463" cy="630" r="180"/>
+  </g>
+
+  <!-- Back mountains (matching front) -->
+  <path d="
+    M 0,1400 L 0,1065
+    C 48,1040 92,1022 142,1030
+    C 192,1038 232,1062 266,1048
+    C 300,1034 332,1002 378,990
+    C 422,978  460,992  488,1008
+    C 505,1017 518,1024 532,1014
+    C 552,1000 576,974  618,962
+    C 658,951  698,962  738,982
+    C 776,1000 804,1030 844,1044
+    C 884,1058 920,1046 930,1040
+    L 930,1400 Z
+  " fill="#0f2a38"/>
+  <path d="
+    M 0,1400 L 0,1148
+    C 52,1132 98,1120 142,1132
+    C 186,1144 214,1168 248,1148
+    C 282,1128 314,1092 356,1080
+    C 390,1070 422,1080 448,1095
+    C 466,1105 478,1114 494,1105
+    C 510,1096 528,1078 550,1070
+    C 572,1062 596,1070 620,1079
+    C 648,1091 670,1112 704,1100
+    C 738,1088 772,1060 816,1048
+    C 858,1036 900,1052 930,1064
+    L 930,1400 Z
+  " fill="#1a5062"/>
+
+  <!-- ── AUTHOR BLOCK (top-left — mirrors AUL exactly) ── -->
+  <!-- Author photo box -->
+  <rect x="52" y="52" width="148" height="188" rx="4"
+        fill="#091828" stroke="white" stroke-width="2.5"/>
+  <text x="126" y="156" text-anchor="middle"
+        font-family="Impact,sans-serif" font-size="16"
+        fill="white" opacity="0.45">PHOTO</text>
+
+  <!-- Author name next to photo (AUL style — large stacked Impact) -->
+  <text x="228" y="102"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="52" fill="white" letter-spacing="1">TREVOR</text>
+  <text x="228" y="158"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="52" fill="white" letter-spacing="1">JARED</text>
+  <text x="228" y="214"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="52" fill="white" letter-spacing="1">SPENCER</text>
+
+  <!-- Gold rule separating author block from body text -->
+  <rect x="52" y="258" width="826" height="3"  fill="#f5c018" opacity="0.70"/>
+  <rect x="52" y="264" width="826" height="1.5" fill="#f5c018" opacity="0.40"/>
+
+  <!-- ── BODY TEXT (AUL uses flush-left or centered paragraphs) ── -->
+  <!-- Para 1 -->
+  <text x="465" y="300" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">Metanomics is an inspired examination of the restoration of the</text>
+  <text x="465" y="328" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="24" fill="white">biblically prophesied New Jerusalem from an economic perspective.</text>
+
+  <!-- Para 2 — gold -->
+  <text x="465" y="374" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">The Lord has returned to His earthly tabernacle, together with Enoch</text>
+  <text x="465" y="400" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">and the hosts of the heavenly city. They now direct this sacred work to</text>
+  <text x="465" y="426" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">outwardly manifest the Kingdom of God on the earth in our day. The</text>
+  <text x="465" y="452" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">Millennium has begun, and humanity is progressing from the terrestrial</text>
+  <text x="465" y="478" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">degree toward the celestial degree during this Messianic Age.</text>
+
+  <!-- Para 3 — gold, centered -->
+  <text x="465" y="522" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">A central requirement of this new era is the restoration of the economy</text>
+  <text x="465" y="548" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">of Zion, founded on the scriptural principles clearly outlined in this book.</text>
+
+  <!-- Para 4 — white -->
+  <text x="465" y="592" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="white">Through ancient prophecy, scripture, and modern revelation, the author</text>
+  <text x="465" y="618" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="white">illuminates the precise economic principles the Lord has given us to implement.</text>
+
+  <!-- Para 5 — white -->
+  <text x="465" y="662" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="white">This work is designed to bring readers to a deeper understanding of these</text>
+  <text x="465" y="688" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="white">truths and to awaken in them a knowledge of their divine call to participate</text>
+  <text x="465" y="714" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="white">in bringing the fullness of God's kingdom to the earth.</text>
+
+  <!-- Para 6 — gold -->
+  <text x="465" y="758" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">We all have a vital role to magnify these principles within ourselves,</text>
+  <text x="465" y="784" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="23" fill="#f5c018">our families, communities and our nations—both spiritually and temporally.</text>
+
+  <!-- Closing line — white, slightly larger -->
+  <text x="465" y="828" text-anchor="middle"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="25" fill="white">Metanomics exists to equip and empower you for this essential work.</text>
+
+  <!-- Gold rule before publisher area -->
+  <rect x="52" y="844" width="826" height="3"  fill="#f5c018" opacity="0.70"/>
+
+  <!-- ── PUBLISHER BLOCK (bottom-left — AUL has a "C" flag logo) ── -->
+  <!-- Element Publishing logo — circular with 'E' -->
+  <circle cx="85"  cy="1248" r="40" fill="#091828" stroke="#f5c018" stroke-width="2.5"/>
+  <text x="85" y="1258" text-anchor="middle"
+        font-family="Impact,sans-serif" font-size="36" fill="#f5c018">E</text>
+
+  <text x="148" y="1238"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="44" fill="#f5c018">ELEMENT</text>
+  <text x="148" y="1278"
+        font-family="Impact,'Arial Narrow',Arial,sans-serif"
+        font-size="25" fill="white" letter-spacing="8">PUBLISHING</text>
+
+  <!-- ── BARCODE (bottom-right) ── -->
+  <rect x="700" y="1190" width="185" height="132" rx="4" fill="white"/>
+  <g stroke="#111" fill="none">
+    <line x1="714" y1="1200" x2="714" y2="1258" stroke-width="2"/>
+    <line x1="718" y1="1200" x2="718" y2="1258" stroke-width="1"/>
+    <line x1="722" y1="1200" x2="722" y2="1258" stroke-width="3"/>
+    <line x1="727" y1="1200" x2="727" y2="1258" stroke-width="1"/>
+    <line x1="731" y1="1200" x2="731" y2="1258" stroke-width="2"/>
+    <line x1="735" y1="1200" x2="735" y2="1258" stroke-width="1"/>
+    <line x1="740" y1="1200" x2="740" y2="1258" stroke-width="3"/>
+    <line x1="744" y1="1200" x2="744" y2="1258" stroke-width="1"/>
+    <line x1="749" y1="1200" x2="749" y2="1258" stroke-width="2"/>
+    <line x1="753" y1="1200" x2="753" y2="1258" stroke-width="1"/>
+    <line x1="757" y1="1200" x2="757" y2="1258" stroke-width="3"/>
+    <line x1="762" y1="1200" x2="762" y2="1258" stroke-width="1"/>
+    <line x1="766" y1="1200" x2="766" y2="1258" stroke-width="2"/>
+    <line x1="771" y1="1200" x2="771" y2="1258" stroke-width="3"/>
+    <line x1="775" y1="1200" x2="775" y2="1258" stroke-width="1"/>
+    <line x1="780" y1="1200" x2="780" y2="1258" stroke-width="2"/>
+    <line x1="784" y1="1200" x2="784" y2="1258" stroke-width="1"/>
+    <line x1="789" y1="1200" x2="789" y2="1258" stroke-width="3"/>
+    <line x1="793" y1="1200" x2="793" y2="1258" stroke-width="1"/>
+    <line x1="797" y1="1200" x2="797" y2="1258" stroke-width="2"/>
+    <line x1="802" y1="1200" x2="802" y2="1258" stroke-width="1"/>
+    <line x1="807" y1="1200" x2="807" y2="1258" stroke-width="3"/>
+    <line x1="811" y1="1200" x2="811" y2="1258" stroke-width="1"/>
+    <line x1="816" y1="1200" x2="816" y2="1258" stroke-width="2"/>
+    <line x1="820" y1="1200" x2="820" y2="1258" stroke-width="1"/>
+    <line x1="825" y1="1200" x2="825" y2="1258" stroke-width="3"/>
+    <line x1="829" y1="1200" x2="829" y2="1258" stroke-width="2"/>
+    <line x1="834" y1="1200" x2="834" y2="1258" stroke-width="1"/>
+    <line x1="838" y1="1200" x2="838" y2="1258" stroke-width="2"/>
+    <line x1="843" y1="1200" x2="843" y2="1258" stroke-width="1"/>
+    <line x1="847" y1="1200" x2="847" y2="1258" stroke-width="3"/>
+    <line x1="852" y1="1200" x2="852" y2="1258" stroke-width="1"/>
+    <line x1="857" y1="1200" x2="857" y2="1258" stroke-width="2"/>
+    <line x1="861" y1="1200" x2="861" y2="1258" stroke-width="1"/>
+    <line x1="866" y1="1200" x2="866" y2="1258" stroke-width="3"/>
+    <line x1="870" y1="1200" x2="870" y2="1258" stroke-width="1"/>
+    <line x1="874" y1="1200" x2="874" y2="1258" stroke-width="2"/>
+  </g>
+  <text x="792" y="1274" text-anchor="middle"
+        font-family="Arial,sans-serif" font-size="11" fill="#222">978-0-000-00000-0</text>
+
+</g>
+
+
+<!-- Section borders -->
+<line x1="930"  y1="0" x2="930"  y2="1400" stroke="#f5c018" stroke-width="1.5" opacity="0.40"/>
+<line x1="1020" y1="0" x2="1020" y2="1400" stroke="#f5c018" stroke-width="1.5" opacity="0.40"/>
+
+</svg>
+</body>
+</html>
