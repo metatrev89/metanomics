@@ -1138,26 +1138,29 @@ h1, h2, h3, h4 {
 /* ============================================================
    BLOG LIST PAGE
    ============================================================ */
+/* Compact, left-aligned — modeled after the individual post page hero */
 .blog-hero {
   background: var(--nav-bg);
-  padding: 4rem 0 3rem;
-  text-align: center;
+  padding: 2.5rem 0 2rem;
+  text-align: left;
 }
 
 .blog-hero h1 {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(1.5rem, 4vw, 2.75rem);  /* matches .post-hero h1 */
   font-weight: 400;
   color: var(--text-white);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  max-width: 800px;
 }
 
 .blog-hero p {
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.75);
-  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 0.6rem;
+  max-width: 800px;
 }
 
 .blog-grid-section { padding: 4rem 0 6rem; background: var(--bg); }
