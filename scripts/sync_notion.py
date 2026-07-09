@@ -254,7 +254,13 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
         f'<div class="post-cover-wrap"><img class="post-cover" src="{html.escape(cover_url)}" alt="{html.escape(title)}" loading="lazy"></div>'
         if cover_url else ""
     )
-    og_image = html.escape(cover_url) if cover_url else "https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png"
+    # og/twitter images must be absolute URLs — X (Twitter) ignores relative paths,
+    # even though Facebook resolves them against the page URL.
+    if cover_url:
+        og_image_abs = cover_url if cover_url.startswith("http") else f"https://www.metanomics.org{cover_url}"
+        og_image = html.escape(og_image_abs)
+    else:
+        og_image = "https://www.metanomics.org/assets/images/metanomics-reverse-engineering-economy-of-zion-trevor-spencer.png"
     desc = html.escape(excerpt[:200]) if excerpt else html.escape(title)
     desc_short = html.escape(excerpt[:160]) if excerpt else html.escape(title)
     date_iso = f"{date_raw}T00:00:00Z" if date_raw and "T" not in date_raw else (date_raw or "")
