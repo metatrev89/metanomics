@@ -698,6 +698,35 @@ def main():
     else:
         print("\nWARNING: blog.html not found — skipping grid update.")
 
+    # ── Regenerate homepage "From the Blog" section (3 most recent posts) ──
+    index_html_path = SITE_ROOT / "index.html"
+    if index_html_path.exists():
+        original = index_html_path.read_text(encoding="utf-8")
+
+        home_cards = cards[:3]  # cards are already sorted newest-first
+        if home_cards:
+            new_home_grid = (
+                '<div class="posts-grid">\n\n'
+                + "\n\n".join(home_cards)
+                + "\n\n      </div>"
+            )
+        else:
+            new_home_grid = '<div class="posts-grid"><p class="no-posts">No posts yet. Check back soon.</p></div>'
+
+        updated = re.sub(
+            r"<!-- HOME-POSTS-START -->.*?<!-- HOME-POSTS-END -->",
+            f"<!-- HOME-POSTS-START -->\n      {new_home_grid}\n      <!-- HOME-POSTS-END -->",
+            original,
+            flags=re.DOTALL,
+        )
+        if updated != original:
+            index_html_path.write_text(updated, encoding="utf-8")
+            print(f"Updated index.html 'From the Blog' section with {len(home_cards)} post card(s).")
+        else:
+            print("WARNING: HOME-POSTS markers not found or unchanged in index.html — homepage blog section not modified.")
+    else:
+        print("WARNING: index.html not found — skipping homepage blog section.")
+
     # ── Regenerate sitemap.xml ──
     generate_sitemap(SITE_ROOT, post_slugs_dates)
 

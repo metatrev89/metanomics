@@ -37,7 +37,7 @@
   --border-light: #ece9e4;
 
   /* Misc */
-  --nav-height:   200px;  /* Wix header is tall */
+  --nav-height:   125px;  /* Desktop header — slimmed ~38% (was 200px) */
   --radius:       3px;
   --shadow:       0 4px 20px rgba(0,0,0,0.15);
 }
@@ -126,8 +126,8 @@ h1, h2, h3, h4 {
 }
 
 .nav-logo {
-  width: 120px;
-  height: 120px;
+  width: 78px;   /* scaled down with the slimmer header (was 120px) */
+  height: 78px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -952,6 +952,41 @@ h1, h2, h3, h4 {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+/* ============================================================
+   HOME — FROM THE BLOG (3 most recent posts)
+   Cards reuse .post-card / .posts-grid from the blog page,
+   so hover animation is identical to blog.html tiles.
+   ============================================================ */
+.home-blog-section {
+  background: var(--bg);
+  padding: 4rem 0 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.home-blog-cta {
+  text-align: center;
+  margin-top: 2.75rem;
+}
+
+.home-blog-viewall {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-nav);
+  border: 1px solid var(--blue-nav);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.75rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.home-blog-viewall:hover {
+  background: var(--blue-nav);
+  color: var(--text-white);
 }
 
 /* ============================================================
