@@ -12,6 +12,9 @@ book_image_designs.html
 *.tmp
 *.log
 
+# Content workspace — briefs, drafts, newsletter copy (published via Notion sync, never via this repo)
+drafts/
+
 # Python
 __pycache__/
 *.pyc
