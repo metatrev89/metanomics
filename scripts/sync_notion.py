@@ -125,6 +125,35 @@ def format_date(date_str: str) -> str:
     except Exception:
         return date_str
 
+def write_if_changed(path: Path, content: str, volatile_patterns=()) -> bool:
+    """Write a file only if its meaningful content changed.
+
+    volatile_patterns are regexes for auto-stamped fields (modified times,
+    build dates) that change on every sync run. They're masked out of the
+    comparison so a timestamp-only difference does NOT trigger a rewrite.
+    This keeps the hourly GitHub Action from committing no-op changes
+    (which previously caused rebase conflicts on every manual publish).
+    Returns True if the file was (re)written.
+    """
+    def normalize(text: str) -> str:
+        for pat in volatile_patterns:
+            text = re.sub(pat, "", text)
+        return text
+    if path.exists():
+        old = path.read_text(encoding="utf-8")
+        if normalize(old) == normalize(content):
+            return False
+    path.write_text(content, encoding="utf-8")
+    return True
+
+# Auto-stamped fields to ignore when deciding whether a file really changed
+POST_VOLATILE = (
+    r'<meta property="article:modified_time" content="[^"]*">',
+    r'"dateModified":\s*"[^"]*"',
+)
+SITEMAP_VOLATILE = (r"<lastmod>[^<]*</lastmod>",)
+FEED_VOLATILE = (r"<lastBuildDate>[^<]*</lastBuildDate>",)
+
 # ── Blocks → HTML ────────────────────────────────────────────────────────────
 def fetch_all_blocks(block_id: str) -> list:
     """Recursively fetch all blocks including children of toggle blocks."""
@@ -429,11 +458,13 @@ def post_html(title, date_str, author, content_html, cover_url, slug, excerpt, d
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand-col">
-        <img class="footer-logo"
-          src="../assets/images/metanomics-logo.png"
-          alt="Metanomics" width="56" height="56" loading="lazy">
-        <p class="footer-site-name">Metanomics</p>
-        <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
+        <a class="footer-brand-link" href="../index.html" aria-label="Metanomics — back to home">
+          <img class="footer-logo"
+            src="../assets/images/metanomics-logo.png"
+            alt="Metanomics" width="56" height="56" loading="lazy">
+          <p class="footer-site-name">Metanomics</p>
+          <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
+        </a>
       </div>
       <div class="footer-newsletter-col">
         <h4>Remembrance Newsletter</h4>
@@ -557,8 +588,10 @@ def generate_sitemap(site_root, post_slugs_dates):
     xml += "\n".join(urls) + "\n"
     xml += "</urlset>\n"
     sitemap_path = site_root / "sitemap.xml"
-    sitemap_path.write_text(xml, encoding="utf-8")
-    print(f"Regenerated sitemap.xml with {len(post_slugs_dates) + 2} URL(s).")
+    if write_if_changed(sitemap_path, xml, SITEMAP_VOLATILE):
+        print(f"Regenerated sitemap.xml with {len(post_slugs_dates) + 2} URL(s).")
+    else:
+        print("sitemap.xml unchanged, skipped.")
 
 
 # ── RSS feed generation ──────────────────────────────────────────────────────
@@ -603,8 +636,10 @@ def generate_rss(site_root, posts_data):
 </rss>
 """
     feed_path = site_root / "feed.xml"
-    feed_path.write_text(rss, encoding="utf-8")
-    print(f"Generated feed.xml with {len(posts_data)} item(s).")
+    if write_if_changed(feed_path, rss, FEED_VOLATILE):
+        print(f"Generated feed.xml with {len(posts_data)} item(s).")
+    else:
+        print("feed.xml unchanged, skipped.")
 
 
 # ── Main sync ────────────────────────────────────────────────────────────────
@@ -660,13 +695,16 @@ def main():
 
         content_html = blocks_to_html(all_blocks)
 
-        # Write individual post file
+        # Write individual post file (skipped if only auto-stamped timestamps differ)
         post_file = POSTS_DIR / f"{slug}.html"
-        post_file.write_text(
+        if write_if_changed(
+            post_file,
             post_html(title, date_str, "Trevor Spencer", content_html, cover_url, slug, excerpt, date_raw),
-            encoding="utf-8"
-        )
-        print(f"    → Written: posts/{slug}.html")
+            POST_VOLATILE,
+        ):
+            print(f"    → Written: posts/{slug}.html")
+        else:
+            print(f"    → Unchanged, skipped: posts/{slug}.html")
 
         cards.append(blog_card_html(title, date_str, excerpt, slug, cover_url))
         post_slugs_dates.append((slug, date_raw))

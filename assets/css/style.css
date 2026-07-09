@@ -136,8 +136,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
-  margin-left: 1.25rem; /* gap between logo and title (desktop) */
-  margin-right: auto;   /* pushes nav-links to far right (desktop) */
+  /* Lives inside the single .nav-brand link — spacing comes from its gap */
   text-decoration: none;
   color: inherit;
 }
@@ -1020,6 +1019,16 @@ h1, h2, h3, h4 {
   margin-bottom: 2.5rem;
 }
 
+/* Footer brand (logo + title + tagline) is one clickable link → home */
+.footer-brand-link {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.footer-brand-link:hover { opacity: 0.8; }
+
 .footer-brand-col .footer-logo {
   width: 70px;
   height: 70px;
@@ -1476,6 +1485,11 @@ h1, h2, h3, h4 {
   /* Keep logo and hamburger above the centered text */
   .nav-brand    { position: relative; z-index: 1; }
   .nav-menu-btn { position: relative; z-index: 1; }
+
+  /* The centered strip itself stays click-through, but the title text
+     is clickable — it bubbles up to the .nav-brand link → home */
+  .nav-brand-text .nav-title,
+  .nav-brand-text .nav-subtitle { pointer-events: auto; cursor: pointer; }
 
   .youtube-section { padding: 3rem 0; }
   .amazon-section { padding: 3rem 0; }

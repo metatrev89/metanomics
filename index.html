@@ -173,17 +173,17 @@
      ============================================================ -->
 <nav class="site-nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
+    <a href="index.html" class="nav-brand" aria-label="Metanomics — Home">
       <img
         class="nav-logo"
         src="assets/images/metanomics-logo.png"
         alt="Metanomics - Reverse Engineering the Economy of Zion Logo"
         width="44" height="44"
       >
-    </a>
-    <a href="index.html" class="nav-brand-text">
-      <span class="nav-title">Metanomics</span>
-      <span class="nav-subtitle">Reverse Engineering The Economy of Zion</span>
+      <div class="nav-brand-text">
+        <span class="nav-title">Metanomics</span>
+        <span class="nav-subtitle">Reverse Engineering The Economy of Zion</span>
+      </div>
     </a>
 
     <!-- Desktop links -->
@@ -699,15 +699,17 @@
 
       <!-- Brand col -->
       <div class="footer-brand-col">
-        <img
-          class="footer-logo"
-          src="assets/images/metanomics-logo.png"
-          alt="Metanomics Logo"
-          width="56" height="56"
-          loading="lazy"
-        >
-        <p class="footer-site-name">Metanomics</p>
-        <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
+        <a class="footer-brand-link" href="index.html" aria-label="Metanomics — back to home">
+          <img
+            class="footer-logo"
+            src="assets/images/metanomics-logo.png"
+            alt="Metanomics Logo"
+            width="56" height="56"
+            loading="lazy"
+          >
+          <p class="footer-site-name">Metanomics</p>
+          <p class="footer-tagline">Reverse Engineering The Economy of Zion</p>
+        </a>
       </div>
 
       <!-- Newsletter col -->
@@ -759,7 +761,8 @@
     }
   }
   document.querySelector('.nav-brand').addEventListener('click', navHomeClick);
-  document.querySelector('.nav-brand-text').addEventListener('click', navHomeClick);
+  var footerBrandLink = document.querySelector('.footer-brand-link');
+  if (footerBrandLink) footerBrandLink.addEventListener('click', navHomeClick);
 
   /* ---- Ebook CTA: scroll without adding hash to URL ---- */
   var ebookCta = document.querySelector('.js-ebook-cta');
